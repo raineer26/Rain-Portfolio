@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: oklch(0.145 0 0);
+  --color-foreground: oklch(0.985 0 0);
+  --color-primary: oklch(0.785 0.115 274);
+  --color-primary-foreground: oklch(0.985 0 0);
+  --color-secondary: oklch(0.6 0.1 250);
+  --color-secondary-foreground: oklch(0.985 0 0);
+  --color-muted: oklch(0.21 0 0);
+  --color-muted-foreground: oklch(0.556 0 0);
+  --color-accent: oklch(0.25 0 0);
+  --color-accent-foreground: oklch(0.985 0 0);
+  --color-border: oklch(0.3 0 0);
+  --color-input: oklch(0.3 0 0);
+  --color-ring: oklch(0.785 0.115 274);
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --color-destructive-foreground: oklch(0.985 0 0);
+}
+
+:root {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --primary: oklch(0.785 0.115 274);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.6 0.1 250);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.21 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.25 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --border: oklch(0.3 0 0);
+  --input: oklch(0.3 0 0);
+  --ring: oklch(0.785 0.115 274);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
