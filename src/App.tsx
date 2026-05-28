@@ -28,15 +28,15 @@ function App() {
             <ScrollLogo />
             <BackToTop />
 
-            <section id="home" className="scroll-mt-16">
+            <section id="home" className="scroll-mt-0">
               <CinematicFooter />
             </section>
 
-            <section id="projects" className="relative bg-background scroll-mt-16">
+            <section id="projects" className="relative bg-background scroll-mt-0">
               <FeaturedProjects />
             </section>
 
-            <section id="works" className="relative scroll-mt-16">
+            <section id="works" className="relative scroll-mt-0">
               <WorksPreview />
             </section>
           </div>

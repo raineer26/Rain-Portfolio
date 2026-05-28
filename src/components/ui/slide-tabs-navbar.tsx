@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Home", target: "home" },
@@ -10,6 +11,7 @@ const NAV_ITEMS = [
 export function SlideTabsNavbar() {
   const [position, setPosition] = useState({ left: 0, width: 0, opacity: 0 });
   const [selected, setSelected] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
   const tabsRef = useRef<(HTMLLIElement | null)[]>([]);
   const isScrolling = useRef(false);
 
@@ -21,7 +23,6 @@ export function SlideTabsNavbar() {
     }
   }, []);
 
-  // Scroll-spy: detect which section is in view
   useEffect(() => {
     const handleScroll = () => {
       if (isScrolling.current) return;
@@ -42,7 +43,6 @@ export function SlideTabsNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [selected, updateCursor]);
 
-  // Update cursor on mount and when selected changes
   useEffect(() => {
     updateCursor(selected);
   }, [selected, updateCursor]);
@@ -51,29 +51,84 @@ export function SlideTabsNavbar() {
     isScrolling.current = true;
     setSelected(index);
     updateCursor(index);
+    setMenuOpen(false);
     document.getElementById(NAV_ITEMS[index].target)?.scrollIntoView({ behavior: "smooth" });
     setTimeout(() => { isScrolling.current = false; }, 1000);
   };
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
-      <ul
-        onMouseLeave={() => updateCursor(selected)}
-        className="relative flex w-fit rounded-full border border-white/10 bg-white/5 backdrop-blur-xl p-1.5 shadow-lg shadow-black/20"
+    <>
+      {/* Desktop navbar */}
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block">
+        <ul
+          onMouseLeave={() => updateCursor(selected)}
+          className="relative flex w-fit rounded-full border border-white/10 bg-white/5 backdrop-blur-xl p-1.5 shadow-lg shadow-black/20"
+        >
+          {NAV_ITEMS.map((item, i) => (
+            <Tab
+              key={item.target}
+              ref={(el) => { tabsRef.current[i] = el; }}
+              setPosition={setPosition}
+              onClick={() => scrollTo(i)}
+            >
+              {item.label}
+            </Tab>
+          ))}
+          <Cursor position={position} />
+        </ul>
+      </nav>
+
+      {/* Mobile hamburger button */}
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        onClick={() => setMenuOpen(true)}
+        className="fixed top-4 right-4 z-50 md:hidden w-10 h-10 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white cursor-pointer"
       >
-        {NAV_ITEMS.map((item, i) => (
-          <Tab
-            key={item.target}
-            ref={(el) => { tabsRef.current[i] = el; }}
-            setPosition={setPosition}
-            onClick={() => scrollTo(i)}
+        <Menu className="w-5 h-5" />
+      </motion.button>
+
+      {/* Mobile fullscreen overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center gap-8"
           >
-            {item.label}
-          </Tab>
-        ))}
-        <Cursor position={position} />
-      </ul>
-    </nav>
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setMenuOpen(false)}
+              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </motion.button>
+
+            {NAV_ITEMS.map((item, i) => (
+              <motion.button
+                key={item.target}
+                initial={{ opacity: 0, y: 80, rotate: 10 }}
+                animate={{ opacity: 1, y: 0, rotate: 0 }}
+                exit={{ opacity: 0, y: 40 }}
+                transition={{ delay: i * 0.08, duration: 0.6, ease: [0.65, 0.01, 0.05, 0.99] }}
+                onClick={() => scrollTo(i)}
+                className={`relative text-5xl font-black uppercase tracking-wider cursor-pointer overflow-hidden group px-8 py-4 rounded-xl ${selected === i ? "text-white" : "text-white/50"}`}
+              >
+                <span className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-xl" />
+                <span className="relative z-10 group-hover:text-white transition-colors duration-300">{item.label}</span>
+              </motion.button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -86,9 +141,10 @@ interface TabProps {
 const Tab = React.forwardRef<HTMLLIElement, TabProps>(
   ({ children, setPosition, onClick }, ref) => {
     return (
-      <li
+      <motion.li
         ref={ref}
         onClick={onClick}
+        whileTap={{ scale: 0.92 }}
         onMouseEnter={() => {
           const el = ref as React.RefObject<HTMLLIElement>;
           if (!el?.current) return;
@@ -98,7 +154,7 @@ const Tab = React.forwardRef<HTMLLIElement, TabProps>(
         className="relative z-10 block cursor-pointer px-4 py-2 text-xs uppercase text-white mix-blend-difference md:px-6 md:py-2.5 md:text-sm font-medium tracking-wider"
       >
         {children}
-      </li>
+      </motion.li>
     );
   }
 );

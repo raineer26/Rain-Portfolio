@@ -304,6 +304,16 @@ export function CinematicFooter() {
           <div className="footer-aurora absolute left-1/2 top-1/2 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 animate-footer-breathe rounded-[50%] blur-[80px] pointer-events-none z-0" />
           <div className="footer-bg-grid absolute inset-0 z-0 pointer-events-none" />
 
+          {/* Floating shapes */}
+          <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+            <div className="absolute top-[15%] left-[8%] w-20 h-20 border border-primary/10 rounded-full animate-[spin_30s_linear_infinite]" />
+            <div className="absolute top-[60%] right-[10%] w-14 h-14 border border-primary/8 rotate-45 animate-[spin_25s_linear_infinite_reverse]" />
+            <div className="absolute bottom-[25%] left-[20%] w-3 h-3 bg-primary/15 rounded-full animate-[pulse_4s_ease-in-out_infinite]" />
+            <div className="absolute top-[30%] right-[25%] w-2 h-2 bg-secondary/20 rounded-full animate-[pulse_3s_ease-in-out_infinite_0.5s]" />
+            <div className="absolute top-[75%] right-[35%] w-28 h-28 border border-white/[0.03] rounded-full" />
+            <div className="absolute top-[20%] left-[40%] w-4 h-4 border border-primary/10 rotate-12" />
+          </div>
+
           {/* Giant background text */}
           <div
             ref={giantTextRef}

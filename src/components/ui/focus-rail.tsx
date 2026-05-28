@@ -89,10 +89,11 @@ export function FocusRail({ items, initialIndex = 0, className }: FocusRailProps
         </AnimatePresence>
       </div>
 
-      {/* Main Stage */}
-      <div className="relative z-10 flex flex-1 flex-col justify-center px-4 md:px-8">
+      {/* Main Stage — two-column on md+, stacked on mobile */}
+      <div className="relative z-10 flex flex-1 flex-col md:flex-row items-center justify-center px-4 md:px-8 gap-4 md:gap-8">
+        {/* Left: Card carousel */}
         <motion.div
-          className="relative mx-auto flex h-[50%] w-full max-w-6xl items-center justify-center cursor-grab active:cursor-grabbing"
+          className="relative flex h-[45%] md:h-[70%] w-full md:w-[60%] items-center justify-center cursor-grab active:cursor-grabbing"
           style={{ perspective: 1200 }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -109,12 +110,12 @@ export function FocusRail({ items, initialIndex = 0, className }: FocusRailProps
               <motion.div
                 key={active + offset}
                 className={cn(
-                  "absolute aspect-[3/4] w-[40vmin] md:w-[30vmin] rounded-2xl border-t border-white/20 bg-neutral-900 shadow-2xl",
+                  "absolute w-[40vmin] md:w-[40vmin] rounded-2xl border-t border-white/20 overflow-hidden shadow-2xl",
                   isCenter ? "z-20" : "z-10"
                 )}
                 initial={false}
                 animate={{
-                  x: offset * Math.min(350, Math.max(180, typeof window !== "undefined" ? window.innerWidth * 0.22 : 280)),
+                  x: offset * Math.min(350, Math.max(160, typeof window !== "undefined" ? window.innerWidth * 0.2 : 260)),
                   z: -dist * 180,
                   scale: isCenter ? 1 : 0.85,
                   rotateY: offset * -20,
@@ -125,16 +126,16 @@ export function FocusRail({ items, initialIndex = 0, className }: FocusRailProps
                 style={{ transformStyle: "preserve-3d" }}
                 onClick={() => { if (offset !== 0) setActive((p) => p + offset); }}
               >
-                <img src={item.imageSrc} alt={item.title} className="h-full w-full rounded-2xl object-contain pointer-events-none" />
+                <img src={item.imageSrc} alt={item.title} className="w-full h-auto rounded-2xl pointer-events-none" />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
               </motion.div>
             );
           })}
         </motion.div>
 
-        {/* Info & Controls */}
-        <div className="mx-auto mt-4 sm:mt-6 flex w-full max-w-4xl flex-col items-center justify-between gap-3 sm:gap-4 md:flex-row">
-          <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left min-h-[80px] justify-center">
+        {/* Right: Info & Controls */}
+        <div className="flex flex-col items-center md:items-start justify-center w-full md:w-[40%] gap-4">
+          <div className="flex flex-col items-center text-center md:items-start md:text-left justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeItem.id}
