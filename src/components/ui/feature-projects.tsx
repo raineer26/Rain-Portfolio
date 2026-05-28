@@ -120,7 +120,7 @@ export function FeaturedProjects() {
   const activeProject = projects.find((p) => p.value === activeTab)!;
 
   return (
-    <section className="py-10 md:py-16 lg:py-28 px-4 relative overflow-hidden">
+    <section className="py-8 md:py-12 lg:py-16 px-4 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-20 -left-32 w-96 h-96 rounded-full bg-primary/15 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-20 -right-32 w-80 h-80 rounded-full bg-secondary/12 blur-[100px] pointer-events-none" />
@@ -133,10 +133,8 @@ export function FeaturedProjects() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <Reveal className="flex flex-col items-center gap-3 text-center mb-8">
-          <Badge variant="outline">Portfolio</Badge>
-          <h2 className="max-w-2xl text-3xl font-bold md:text-4xl text-foreground tracking-tight">
-            Featured Projects
-          </h2>
+          <Badge variant="outline">Web Dev</Badge>
+          <img src="/featured_projects.png" alt="Featured Projects" className="w-full max-w-[80vw] sm:max-w-sm md:max-w-lg -rotate-2 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]" />
           <p className="text-muted-foreground max-w-lg">
             A selection of websites and applications I've designed and developed.
           </p>

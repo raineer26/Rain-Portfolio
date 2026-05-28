@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 const NAV_ITEMS = [
   { label: "Home", target: "home" },
   { label: "Projects", target: "projects" },
-  { label: "Works", target: "works" },
+  { label: "Creative", target: "works" },
   { label: "About", target: "about" },
   { label: "Contact", target: "contact" },
 ];
@@ -121,10 +121,39 @@ export function SlideTabsNavbar() {
                 exit={{ opacity: 0, y: 40 }}
                 transition={{ delay: i * 0.08, duration: 0.6, ease: [0.65, 0.01, 0.05, 0.99] }}
                 onClick={() => scrollTo(i)}
-                className={`relative text-5xl font-black uppercase tracking-wider cursor-pointer overflow-hidden group px-8 py-4 rounded-xl ${selected === i ? "text-white" : "text-white/50"}`}
+                className={`cursor-pointer ${selected === i ? "text-white" : "text-white/50"}`}
               >
-                <span className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-xl" />
-                <span className="relative z-10 group-hover:text-white transition-colors duration-300">{item.label}</span>
+                <motion.span
+                  initial="initial"
+                  whileHover="hovered"
+                  className="relative block overflow-hidden"
+                  style={{ lineHeight: 0.85 }}
+                >
+                  <div>
+                    {item.label.split("").map((l, idx) => (
+                      <motion.span
+                        key={idx}
+                        variants={{ initial: { y: 0 }, hovered: { y: "-100%" } }}
+                        transition={{ ease: "easeInOut", delay: 0.035 * idx }}
+                        className="inline-block text-3xl font-black uppercase tracking-wider"
+                      >
+                        {l}
+                      </motion.span>
+                    ))}
+                  </div>
+                  <div className="absolute inset-0">
+                    {item.label.split("").map((l, idx) => (
+                      <motion.span
+                        key={idx}
+                        variants={{ initial: { y: "100%" }, hovered: { y: 0 } }}
+                        transition={{ ease: "easeInOut", delay: 0.035 * idx }}
+                        className="inline-block text-3xl font-black uppercase tracking-wider"
+                      >
+                        {l}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.span>
               </motion.button>
             ))}
           </motion.div>

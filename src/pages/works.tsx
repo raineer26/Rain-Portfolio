@@ -33,6 +33,8 @@ export function WorksPage() {
   const [filterOpen, setFilterOpen] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   // Dynamic categories derived from data
   const categories = useMemo(() => {
     const counts = WORKS.reduce<Record<string, number>>((acc, w) => {

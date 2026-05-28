@@ -67,10 +67,10 @@ export function PortfolioGallery({ images: customImages, className = "", cardsOn
   }
 
   return (
-    <section className={`relative py-20 px-4 ${className}`}>
+    <section className={`relative py-8 px-4 ${className}`}>
       <div className="max-w-7xl mx-auto bg-background/50 backdrop-blur-sm rounded-2xl border border-border overflow-hidden">
         {/* Header */}
-        <div className="relative z-10 text-center pt-16 pb-8 px-8">
+        <div className="relative z-10 text-center pt-8 pb-4 px-8">
           <h2 className="text-[clamp(2rem,6vw,4rem)] font-black text-foreground mb-4 uppercase tracking-tight">Browse my works</h2>
           <p className="text-[clamp(0.9rem,2vw,1.25rem)] text-muted-foreground max-w-lg mx-auto mb-8">
             The full collection — illustrations, logos, maps, and card designs all in one place.
