@@ -1,39 +1,51 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800;900&display=swap');
 
 @theme inline {
-  --color-background: oklch(0.17 0 0);
-  --color-foreground: oklch(0.985 0 0);
-  --color-primary: oklch(0.785 0.115 274);
-  --color-primary-foreground: oklch(0.985 0 0);
-  --color-secondary: oklch(0.6 0.1 250);
-  --color-secondary-foreground: oklch(0.985 0 0);
-  --color-muted: oklch(0.23 0 0);
-  --color-muted-foreground: oklch(0.556 0 0);
-  --color-accent: oklch(0.27 0 0);
-  --color-accent-foreground: oklch(0.985 0 0);
-  --color-border: oklch(0.32 0 0);
-  --color-input: oklch(0.32 0 0);
-  --color-ring: oklch(0.785 0.115 274);
-  --color-destructive: oklch(0.577 0.245 27.325);
-  --color-destructive-foreground: oklch(0.985 0 0);
+  --color-background: #FFF8F0;
+  --color-foreground: #3D2C1E;
+  --color-primary: #E8A0BF;
+  --color-primary-foreground: #3D2C1E;
+  --color-secondary: #B5DECE;
+  --color-secondary-foreground: #3D2C1E;
+  --color-muted: #F5EDE4;
+  --color-muted-foreground: #8B7355;
+  --color-accent: #FFE5A0;
+  --color-accent-foreground: #3D2C1E;
+  --color-border: #E8DDD0;
+  --color-input: #E8DDD0;
+  --color-ring: #E8A0BF;
+  --color-destructive: #E57373;
+  --color-destructive-foreground: #FFF8F0;
+  --color-lavender: #C9B8E8;
+  --color-coral: #F4A89A;
+  --color-mint: #B5DECE;
+  --color-butter: #FFE5A0;
+  --color-cream: #FFF8F0;
+  --font-sans: 'Nunito', sans-serif;
+  --font-hand: 'Caveat', cursive;
 }
 
 :root {
-  --background: oklch(0.17 0 0);
-  --foreground: oklch(0.985 0 0);
-  --primary: oklch(0.785 0.115 274);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.6 0.1 250);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.23 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.27 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --border: oklch(0.32 0 0);
-  --input: oklch(0.32 0 0);
-  --ring: oklch(0.785 0.115 274);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
+  --background: #FFF8F0;
+  --foreground: #3D2C1E;
+  --primary: #E8A0BF;
+  --primary-foreground: #3D2C1E;
+  --secondary: #B5DECE;
+  --secondary-foreground: #3D2C1E;
+  --muted: #F5EDE4;
+  --muted-foreground: #8B7355;
+  --accent: #FFE5A0;
+  --accent-foreground: #3D2C1E;
+  --border: #E8DDD0;
+  --input: #E8DDD0;
+  --ring: #E8A0BF;
+  --destructive: #E57373;
+  --destructive-foreground: #FFF8F0;
+  --lavender: #C9B8E8;
+  --coral: #F4A89A;
+  --mint: #B5DECE;
+  --butter: #FFE5A0;
 }
 
 body {
@@ -41,17 +53,18 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
+  font-family: 'Nunito', sans-serif;
 }
 
-body::after {
+/* Paper grain texture */
+body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.04;
-  background-image: radial-gradient(circle, oklch(0.985 0 0) 1px, transparent 1px);
-  background-size: 20px 20px;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
 html {
@@ -59,12 +72,64 @@ html {
   overflow-x: hidden;
 }
 
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+/* Handwritten font utility */
+.font-hand {
+  font-family: 'Caveat', cursive;
 }
 
+/* Washi tape decoration */
+.washi-tape {
+  position: relative;
+}
+.washi-tape::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 80px;
+  height: 24px;
+  background: var(--accent);
+  opacity: 0.8;
+  border-radius: 2px;
+  z-index: 10;
+}
+
+/* Pushpin decoration */
+.pushpin::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: var(--coral);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+/* Soft paper shadow */
+.paper-shadow {
+  box-shadow: 4px 4px 0px rgba(61,44,30,0.08), 0 8px 24px rgba(61,44,30,0.06);
+}
+
+/* Doodle border */
+.doodle-border {
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
 
 .scrollbar-hide {
   -ms-overflow-style: none;

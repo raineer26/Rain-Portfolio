@@ -10,20 +10,12 @@ const NAV_ITEMS = [
   { label: "Contact", target: "contact" },
 ];
 
+const TAB_COLORS = ["#E8A0BF", "#B5DECE", "#C9B8E8", "#FFE5A0", "#F4A89A"];
+
 export function SlideTabsNavbar() {
-  const [position, setPosition] = useState({ left: 0, width: 0, opacity: 0 });
   const [selected, setSelected] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const tabsRef = useRef<(HTMLLIElement | null)[]>([]);
   const isScrolling = useRef(false);
-
-  const updateCursor = useCallback((index: number) => {
-    const tab = tabsRef.current[index];
-    if (tab) {
-      const { width } = tab.getBoundingClientRect();
-      setPosition({ left: tab.offsetLeft, width, opacity: 1 });
-    }
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,10 +24,7 @@ export function SlideTabsNavbar() {
       for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
         const el = document.getElementById(NAV_ITEMS[i].target);
         if (el && el.offsetTop <= scrollY) {
-          if (selected !== i) {
-            setSelected(i);
-            updateCursor(i);
-          }
+          if (selected !== i) setSelected(i);
           break;
         }
       }
@@ -43,22 +32,16 @@ export function SlideTabsNavbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [selected, updateCursor]);
-
-  useEffect(() => {
-    updateCursor(selected);
-  }, [selected, updateCursor]);
+  }, [selected]);
 
   const scrollTo = (index: number) => {
     isScrolling.current = true;
     setSelected(index);
-    updateCursor(index);
     setMenuOpen(false);
     document.getElementById(NAV_ITEMS[index].target)?.scrollIntoView({ behavior: "smooth" });
     setTimeout(() => { isScrolling.current = false; }, 1000);
   };
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -68,34 +51,39 @@ export function SlideTabsNavbar() {
     <>
       {/* Desktop navbar */}
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block">
-        <ul
-          onMouseLeave={() => updateCursor(selected)}
-          className="relative flex w-fit rounded-full border border-white/10 bg-white/5 backdrop-blur-xl p-1.5 shadow-lg shadow-black/20"
-        >
+        <div className="relative flex items-center gap-1 rounded-full bg-white/80 backdrop-blur-sm border-2 border-border p-1.5 shadow-[0_4px_20px_rgba(61,44,30,0.08)]">
           {NAV_ITEMS.map((item, i) => (
-            <Tab
+            <button
               key={item.target}
-              ref={(el) => { tabsRef.current[i] = el; }}
-              setPosition={setPosition}
               onClick={() => scrollTo(i)}
+              className="relative px-5 py-2 rounded-full text-sm font-bold cursor-pointer z-10 transition-colors"
             >
-              {item.label}
-            </Tab>
+              {selected === i && (
+                <motion.span
+                  layoutId="nav-marker"
+                  className="absolute inset-0 rounded-full"
+                  style={{ backgroundColor: TAB_COLORS[i], opacity: 0.4 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
+              <span className={`relative z-10 ${selected === i ? "text-foreground" : "text-muted-foreground"}`}>
+                {item.label}
+              </span>
+            </button>
           ))}
-          <Cursor position={position} />
-        </ul>
+        </div>
       </nav>
 
-      {/* Mobile hamburger button */}
+      {/* Mobile hamburger */}
       <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => setMenuOpen(true)}
-        className="fixed top-4 right-4 z-50 md:hidden w-10 h-10 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white cursor-pointer"
+        className="fixed top-4 right-4 z-50 md:hidden w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm border-2 border-border flex items-center justify-center text-foreground cursor-pointer shadow-md"
       >
         <Menu className="w-5 h-5" />
       </motion.button>
 
-      {/* Mobile fullscreen overlay */}
+      {/* Mobile overlay */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -103,12 +91,12 @@ export function SlideTabsNavbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 z-[100] bg-cream/95 backdrop-blur-md flex flex-col items-center justify-center gap-6"
           >
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setMenuOpen(false)}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white cursor-pointer"
+              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white border-2 border-border flex items-center justify-center text-foreground cursor-pointer"
             >
               <X className="w-5 h-5" />
             </motion.button>
@@ -116,58 +104,23 @@ export function SlideTabsNavbar() {
             {NAV_ITEMS.map((item, i) => (
               <motion.button
                 key={item.target}
-                initial={{ opacity: 0, y: 80, rotate: 10 }}
+                initial={{ opacity: 0, y: 30, rotate: 5 }}
                 animate={{ opacity: 1, y: 0, rotate: 0 }}
-                exit={{ opacity: 0, y: 40 }}
-                transition={{ delay: i * 0.08, duration: 0.6, ease: [0.65, 0.01, 0.05, 0.99] }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ delay: i * 0.08, duration: 0.5, ease: [0.65, 0.01, 0.05, 0.99] }}
                 onClick={() => scrollTo(i)}
-                className={`relative text-5xl font-black uppercase tracking-wider cursor-pointer overflow-hidden group px-8 py-4 rounded-xl ${selected === i ? "text-white" : "text-white/50"}`}
+                className="relative text-4xl font-black uppercase tracking-wide cursor-pointer font-hand px-6 py-2 rounded-xl"
+                style={{ color: selected === i ? TAB_COLORS[i] : "#8B7355" }}
               >
-                <span className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-xl" />
-                <span className="relative z-10 group-hover:text-white transition-colors duration-300">{item.label}</span>
+                {item.label}
+                {selected === i && (
+                  <span className="absolute bottom-0 left-2 right-2 h-3 rounded-sm -z-10" style={{ backgroundColor: TAB_COLORS[i], opacity: 0.3 }} />
+                )}
               </motion.button>
             ))}
           </motion.div>
         )}
       </AnimatePresence>
     </>
-  );
-}
-
-interface TabProps {
-  children: React.ReactNode;
-  setPosition: (pos: { left: number; width: number; opacity: number }) => void;
-  onClick: () => void;
-}
-
-const Tab = React.forwardRef<HTMLLIElement, TabProps>(
-  ({ children, setPosition, onClick }, ref) => {
-    return (
-      <motion.li
-        ref={ref}
-        onClick={onClick}
-        whileTap={{ scale: 0.92 }}
-        onMouseEnter={() => {
-          const el = ref as React.RefObject<HTMLLIElement>;
-          if (!el?.current) return;
-          const { width } = el.current.getBoundingClientRect();
-          setPosition({ left: el.current.offsetLeft, width, opacity: 1 });
-        }}
-        className="relative z-10 block cursor-pointer px-4 py-2 text-xs uppercase text-white mix-blend-difference md:px-6 md:py-2.5 md:text-sm font-medium tracking-wider"
-      >
-        {children}
-      </motion.li>
-    );
-  }
-);
-Tab.displayName = "Tab";
-
-function Cursor({ position }: { position: { left: number; width: number; opacity: number } }) {
-  return (
-    <motion.li
-      animate={position}
-      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-      className="absolute z-0 top-1.5 h-8 md:h-9 rounded-full bg-white/15 backdrop-blur-sm border border-white/20"
-    />
   );
 }
