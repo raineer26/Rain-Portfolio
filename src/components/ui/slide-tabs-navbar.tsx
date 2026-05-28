@@ -55,7 +55,7 @@ export function SlideTabsNavbar() {
     updateCursor(index);
     setMenuOpen(false);
     document.getElementById(NAV_ITEMS[index].target)?.scrollIntoView({ behavior: "smooth" });
-    setTimeout(() => { isScrolling.current = false; }, 1000);
+    setTimeout(() => { isScrolling.current = false; }, 1500);
   };
 
   // Lock body scroll when menu is open

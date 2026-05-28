@@ -77,15 +77,27 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
       {/* Scene 2 (underneath) */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a0533] via-[#0f172a] to-[#0c0c0c] flex items-center justify-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={phase === "scene2" || phase === "done" ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          animate={phase === "scene2" || phase === "done" ? { opacity: 1 } : {}}
+          transition={{ duration: 0.3 }}
           className="text-center px-4"
         >
-          <p className="text-xs sm:text-sm tracking-[0.4em] text-primary/70 uppercase mb-4">Welcome to</p>
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-foreground">
-            Art of Rain
-          </h1>
+          <motion.p
+            initial={{ opacity: 0, y: -20 }}
+            animate={phase === "scene2" || phase === "done" ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-xs sm:text-sm tracking-[0.4em] text-primary/70 uppercase mb-6 font-medium"
+          >
+            Welcome to
+          </motion.p>
+          <motion.img
+            src="/art_of_rain.png"
+            alt="Art of Rain"
+            initial={{ opacity: 0, scale: 0, rotate: -10 }}
+            animate={phase === "scene2" || phase === "done" ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+            transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.6 }}
+            className="w-full max-w-xs sm:max-w-md md:max-w-lg mx-auto"
+          />
         </motion.div>
       </div>
 
