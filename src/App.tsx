@@ -39,6 +39,14 @@ function App() {
             <section id="works" className="relative scroll-mt-0">
               <WorksPreview />
             </section>
+
+            <section id="about" className="relative scroll-mt-0 min-h-[50vh] flex items-center justify-center">
+              <p className="text-muted-foreground text-lg">ABOUT & SKILLS — content coming soon</p>
+            </section>
+
+            <section id="contact" className="relative scroll-mt-0 min-h-[50vh] flex items-center justify-center">
+              <p className="text-muted-foreground text-lg">CONTACT — content coming soon</p>
+            </section>
           </div>
         } />
         <Route path="/works" element={<WorksPage />} />

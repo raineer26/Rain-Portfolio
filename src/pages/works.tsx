@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Grid3X3, Layers, ArrowLeft, ChevronDown } from "lucide-react";
 import { FocusRail, type FocusRailItem } from "@/components/ui/focus-rail";
+import { BackToTop } from "@/components/ui/back-to-top";
 import { FlipReveal, FlipRevealItem } from "@/components/ui/flip-reveal";
 import { ScrollTiltedGrid } from "@/components/ui/scroll-tilted-grid";
 import { Badge } from "@/components/ui/badge";
@@ -26,7 +27,7 @@ const WORKS: WorkItem[] = [
 const CATEGORIES_ORDER = ["All", "Game Cards", "Logos", "Maps", "Posters"];
 
 export function WorksPage() {
-  const [view, setView] = useState<"grid" | "detail">("detail");
+  const [view, setView] = useState<"grid" | "detail">("grid");
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [filterOpen, setFilterOpen] = useState(false);
@@ -89,7 +90,7 @@ export function WorksPage() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="sticky top-0 z-20 backdrop-blur-md pb-4 pt-2 -mx-4 px-4">
+        <div className="sticky top-0 z-20 backdrop-blur-xl pb-4 pt-2 -mx-4 px-4 border-b border-white/5">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
           <div className="flex items-center gap-4">
             <motion.button
@@ -244,6 +245,7 @@ export function WorksPage() {
           <FocusRail items={filtered} initialIndex={selectedIndex} />
         )}
       </div>
+      <BackToTop />
     </div>
   );
 }

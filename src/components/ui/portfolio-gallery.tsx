@@ -71,14 +71,14 @@ export function PortfolioGallery({ images: customImages, className = "", cardsOn
       <div className="max-w-7xl mx-auto bg-background/50 backdrop-blur-sm rounded-2xl border border-border overflow-hidden">
         {/* Header */}
         <div className="relative z-10 text-center pt-16 pb-8 px-8">
-          <h2 className="text-[clamp(3rem,10vw,6rem)] font-black text-foreground mb-4 uppercase tracking-tight">Browse my works</h2>
+          <h2 className="text-[clamp(2rem,6vw,4rem)] font-black text-foreground mb-4 uppercase tracking-tight">Browse my works</h2>
           <p className="text-[clamp(0.9rem,2vw,1.25rem)] text-muted-foreground max-w-lg mx-auto mb-8">
             The full collection — illustrations, logos, maps, and card designs all in one place.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               to="/works"
-              className="inline-flex items-center gap-3 bg-foreground text-background px-6 py-3 rounded-full font-medium hover:bg-foreground/90 transition-colors group mb-20"
+              className="inline-flex items-center gap-3 bg-foreground text-background px-6 py-3 rounded-full font-bold hover:bg-foreground/90 transition-all shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.5)] group mb-20"
             >
               <span>View All Works</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -87,8 +87,8 @@ export function PortfolioGallery({ images: customImages, className = "", cardsOn
         </div>
 
         {/* 3D overlapping layout */}
-        <div className="relative overflow-hidden h-[300px] md:h-[400px] -mb-[150px] md:-mb-[200px]">
-          <div className="flex -space-x-52 md:-space-x-80 pb-8 pt-28 md:pt-40 items-end justify-center">
+        <div className="relative overflow-hidden h-[250px] md:h-[400px] -mb-[120px] md:-mb-[200px]">
+          <div className="flex -space-x-52 md:-space-x-80 pb-8 pt-20 md:pt-40 items-end justify-center">
             {images.map((image, index) => {
               const totalImages = images.length;
               const middle = Math.floor(totalImages / 2);

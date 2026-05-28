@@ -93,7 +93,7 @@ function BrowserFrame({ url, title }: { url: string; title: string }) {
         </div>
       </div>
       {/* Iframe — rendered at 1280px wide, scaled down to fit */}
-      <div className="relative w-full aspect-video max-h-[35vh] md:max-h-[50vh] bg-background overflow-hidden">
+      <div className="relative w-full aspect-[16/10] max-h-[25vh] md:max-h-[50vh] bg-background overflow-hidden">
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center bg-muted/30 z-10">
             <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
@@ -205,29 +205,31 @@ export function FeaturedProjects() {
                 className="grid gap-6 lg:grid-cols-[1fr_1.5fr] lg:gap-10 items-center"
               >
                 {/* Info */}
-                <div className="flex flex-col gap-4 order-2 lg:order-1">
+                <div className="flex flex-col gap-4 order-2 lg:order-1 min-w-0">
                   <Badge variant="outline" className="w-fit">
                     {project.badge}
                   </Badge>
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                  <h3 className="text-xl md:text-3xl font-bold text-foreground">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                  <p className="text-foreground/70 text-sm md:text-base leading-relaxed">
                     {project.description}
                   </p>
-                  <Button
-                    className="mt-2 w-fit gap-2 bg-white text-black hover:bg-white/90 font-bold"
-                    size="lg"
-                    asChild
-                  >
-                    <a href={project.url} target="_blank" rel="noopener noreferrer">
-                      Visit Site <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </Button>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      className="mt-2 w-fit gap-2 bg-white text-black hover:bg-white/90 font-bold shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.5)] transition-shadow"
+                      size="lg"
+                      asChild
+                    >
+                      <a href={project.url} target="_blank" rel="noopener noreferrer">
+                        Visit Site <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </Button>
+                  </motion.div>
                 </div>
 
                 {/* Browser Preview */}
-                <div className="order-1 lg:order-2">
+                <div className="order-1 lg:order-2 overflow-hidden rounded-xl">
                   <BrowserFrame url={project.url} title={project.title} />
                 </div>
               </TabsContent>

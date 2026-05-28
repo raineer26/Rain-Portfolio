@@ -6,6 +6,8 @@ const NAV_ITEMS = [
   { label: "Home", target: "home" },
   { label: "Projects", target: "projects" },
   { label: "Works", target: "works" },
+  { label: "About", target: "about" },
+  { label: "Contact", target: "contact" },
 ];
 
 export function SlideTabsNavbar() {
