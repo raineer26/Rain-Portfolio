@@ -55,18 +55,18 @@ export function WorksPreview() {
   return (
     <FlowArt>
       {/* Section 1: Game Art */}
-      <FlowSection style={{ backgroundColor: "#0a0a14", color: "#fff" }}>
+      <FlowSection style={{ backgroundColor: "#111118", color: "#fff" }}>
         {/* Grid texture */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-50"
+          className="absolute inset-0 pointer-events-none opacity-70"
           style={{
             backgroundSize: "60px 60px",
-            backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)",
+            backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
           }}
         />
         {/* Radial glows */}
-        <div className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(120,80,200,0.2)_0%,transparent_70%)] pointer-events-none" />
-        <div className="absolute -bottom-[10%] -right-[10%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(100,50,200,0.12)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(120,80,200,0.25)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(100,50,200,0.15)_0%,transparent_70%)] pointer-events-none" />
         {/* Slideshow background */}
         <SlideshowBg images={GAME_ART_SLIDES} />
 
@@ -101,18 +101,18 @@ export function WorksPreview() {
       </FlowSection>
 
       {/* Section 2: Brand & Print */}
-      <FlowSection style={{ backgroundColor: "#0a0a14", color: "#fff" }}>
+      <FlowSection style={{ backgroundColor: "#111118", color: "#fff" }}>
         {/* Grid texture */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-50"
+          className="absolute inset-0 pointer-events-none opacity-70"
           style={{
             backgroundSize: "60px 60px",
-            backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)",
+            backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
           }}
         />
         {/* Radial glows */}
-        <div className="absolute -top-[15%] -right-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(50,200,150,0.15)_0%,transparent_70%)] pointer-events-none" />
-        <div className="absolute -bottom-[15%] -left-[10%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(80,150,200,0.1)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute -top-[15%] -right-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(50,200,150,0.2)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute -bottom-[15%] -left-[10%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(80,150,200,0.12)_0%,transparent_70%)] pointer-events-none" />
         {/* Slideshow background */}
         <SlideshowBg images={BRAND_SLIDES} />
 
@@ -147,18 +147,18 @@ export function WorksPreview() {
       </FlowSection>
 
       {/* Section 3: Gallery Preview + CTA */}
-      <FlowSection style={{ backgroundColor: "#0a0a14", color: "#fff" }}>
+      <FlowSection style={{ backgroundColor: "#111118", color: "#fff" }}>
         {/* Grid texture */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-50"
+          className="absolute inset-0 pointer-events-none opacity-70"
           style={{
             backgroundSize: "60px 60px",
-            backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)",
+            backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
           }}
         />
         {/* Radial glows */}
-        <div className="absolute -top-[15%] left-[20%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(200,120,255,0.12)_0%,transparent_70%)] pointer-events-none" />
-        <div className="absolute -bottom-[20%] -right-[5%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(120,80,200,0.1)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute -top-[15%] left-[20%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(200,120,255,0.18)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute -bottom-[20%] -right-[5%] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(120,80,200,0.15)_0%,transparent_70%)] pointer-events-none" />
         {/* Slideshow background */}
         <SlideshowBg images={[...GAME_ART_SLIDES.slice(0, 4), ...BRAND_SLIDES.slice(0, 2)]} />
 

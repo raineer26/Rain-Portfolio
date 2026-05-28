@@ -58,20 +58,20 @@ export function WorksPage() {
       <div className="absolute inset-0 pointer-events-none">
         {/* Grid texture */}
         <div
-          className="absolute inset-0 opacity-70"
+          className="absolute inset-0 opacity-100"
           style={{
             backgroundSize: "60px 60px",
-            backgroundImage: "linear-gradient(to right, oklch(0.985 0 0 / 0.05) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.985 0 0 / 0.05) 1px, transparent 1px)",
+            backgroundImage: "linear-gradient(to right, oklch(0.985 0 0 / 0.06) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.985 0 0 / 0.06) 1px, transparent 1px)",
             maskImage: "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
             WebkitMaskImage: "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
           }}
         />
         {/* Primary radial glow — top left */}
-        <div className="absolute -top-[20%] -left-[10%] w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,oklch(0.785_0.115_274/0.25)_0%,transparent_70%)]" />
+        <div className="absolute -top-[20%] -left-[10%] w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,oklch(0.785_0.115_274/0.3)_0%,transparent_70%)]" />
         {/* Secondary radial glow — bottom right */}
-        <div className="absolute -bottom-[15%] -right-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,oklch(0.6_0.1_250/0.2)_0%,transparent_70%)]" />
+        <div className="absolute -bottom-[15%] -right-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,oklch(0.6_0.1_250/0.25)_0%,transparent_70%)]" />
         {/* Accent glow — center */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,oklch(0.785_0.115_274/0.1)_0%,transparent_60%)]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,oklch(0.785_0.115_274/0.12)_0%,transparent_60%)]" />
         {/* Noise texture overlay */}
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
         {/* Floating shapes */}
