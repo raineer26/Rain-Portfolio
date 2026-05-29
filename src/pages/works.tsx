@@ -26,6 +26,13 @@ const WORKS: WorkItem[] = [
 
 const CATEGORIES_ORDER = ["All", "Game Cards", "Logos", "Maps", "Posters"];
 
+const CATEGORY_INFO: Record<string, { description: string; image: string }> = {
+  "Game Cards": { description: "Mythical creatures, rare beasts, and legendary beings — illustrated for immersive tabletop card games.", image: "/game_cards.png" },
+  "Logos": { description: "Brand identities crafted with bold typography and clean geometry for startups and creative projects.", image: "/logo_designs.png" },
+  "Maps": { description: "Hand-illustrated exploration maps with detailed terrain, trails, and points of interest.", image: "/game_map.png" },
+  "Posters": { description: "Vibrant promotional designs blending illustration with bold typography.", image: "/posters.png" },
+};
+
 export function WorksPage() {
   const [view, setView] = useState<"grid" | "detail">("grid");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -92,9 +99,9 @@ export function WorksPage() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="sticky top-0 z-20 backdrop-blur-xl pb-4 pt-2 -mx-4 px-4 border-b border-white/5">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
-          <div className="flex items-center gap-4">
+        <div className="pb-4">
+          {/* Top bar: back button + filter + view toggle in one row */}
+          <div className="flex items-center justify-between gap-3 mb-3">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -103,145 +110,115 @@ export function WorksPage() {
             >
               <ArrowLeft className="w-5 h-5" />
             </motion.button>
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight">Digital Works</h1>
-              <p className="text-muted-foreground text-sm mt-1">Full collection of illustrations, designs, and visual projects.</p>
+
+            <div className="flex items-center gap-2">
+              {/* Filter dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setFilterOpen(!filterOpen)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted/30 border border-border/30 text-sm font-semibold cursor-pointer"
+                >
+                  <span>{activeCategory} ({categories.find(c => c.name === activeCategory)?.count})</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${filterOpen ? "rotate-180" : ""}`} />
+                </button>
+                <AnimatePresence>
+                  {filterOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full right-0 mt-2 rounded-xl bg-muted/90 border border-border/30 backdrop-blur-xl overflow-hidden z-30 min-w-[160px]"
+                    >
+                      {categories.map((cat) => (
+                        <button
+                          key={cat.name}
+                          onClick={() => { setActiveCategory(cat.name); setFilterOpen(false); }}
+                          className={`flex items-center justify-between w-full px-4 py-3 text-sm font-medium cursor-pointer transition-colors ${activeCategory === cat.name ? "text-foreground bg-white/5" : "text-muted-foreground hover:text-foreground hover:bg-white/5"}`}
+                        >
+                          <span>{cat.name}</span>
+                          <span className="text-xs text-muted-foreground">{cat.count}</span>
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* View toggle */}
+              <div className="flex items-center gap-1 rounded-full bg-muted/30 p-1 border border-border/30">
+                {([["grid", Grid3X3], ["detail", Layers]] as const).map(([key, Icon]) => (
+                  <motion.button
+                    key={key}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setView(key)}
+                    className="relative flex items-center px-2.5 py-2 rounded-full cursor-pointer z-10"
+                  >
+                    {view === key && (
+                      <motion.span
+                        layoutId="view-pill"
+                        className="absolute inset-0 rounded-full bg-foreground"
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                    <Icon className={`relative z-10 w-4 h-4 ${view === key ? "text-background" : "text-muted-foreground"}`} />
+                  </motion.button>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Toggle — Desktop */}
-          <div className="hidden md:flex items-center gap-1 rounded-full bg-muted/30 p-1 border border-border/30 backdrop-blur-sm">
-            {([["grid", Grid3X3, "Grid"], ["detail", Layers, "Detail"]] as const).map(([key, Icon, label]) => (
-              <button
-                key={key}
-                onClick={() => setView(key)}
-                className="relative flex items-center gap-2 px-2.5 md:px-4 py-2 rounded-full text-sm font-medium cursor-pointer z-10"
-              >
-                {view === key && (
-                  <motion.span
-                    layoutId="view-pill"
-                    className="absolute inset-0 rounded-full bg-foreground shadow-[0_0_15px_-3px_rgba(255,255,255,0.2)]"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <span className={`relative z-10 flex items-center gap-2 ${view === key ? "text-background" : "text-muted-foreground hover:text-foreground"}`}>
-                  <Icon className="w-4 h-4" /> <span className="hidden md:inline">{label}</span>
-                </span>
-              </button>
-            ))}
+          {/* Centered title */}
+          <div className="text-center mb-4">
+            <img src="/creative_works.png" alt="Creative Works" className="h-16 md:h-24 object-contain mx-auto -rotate-2 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]" />
+            <p className="text-muted-foreground text-sm md:text-base mt-3 max-w-lg mx-auto">Full collection of illustrations, designs, and visual projects.</p>
           </div>
         </div>
-
-        {/* Filter Tabs — Desktop */}
-        <div className="hidden md:flex relative gap-1 p-1 rounded-full bg-muted/30 border border-border/30 backdrop-blur-sm w-fit">
-          {categories.map((cat) => (
-            <button
-              key={cat.name}
-              onClick={() => setActiveCategory(cat.name)}
-              className="relative px-4 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer z-10 shrink-0"
-            >
-              {activeCategory === cat.name && (
-                <motion.span
-                  layoutId="filter-pill"
-                  className="absolute inset-0 rounded-full bg-primary shadow-[0_0_20px_-3px_rgba(120,80,200,0.5)]"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-              <span className={`relative z-10 flex items-center gap-1.5 ${activeCategory === cat.name ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>
-                {cat.name}
-                <span className={`text-xs px-1.5 py-0.5 rounded-full ${activeCategory === cat.name ? "bg-white/20" : "bg-muted/50"}`}>
-                  {cat.count}
-                </span>
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Filter Tabs — Mobile dropdown + Toggle row */}
-        <div className="flex md:hidden items-center gap-2">
-          <div className="relative flex-1">
-            <button
-              onClick={() => setFilterOpen(!filterOpen)}
-              className="flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-muted/30 border border-border/30 backdrop-blur-sm text-sm font-semibold cursor-pointer"
-            >
-              <span>{activeCategory} ({categories.find(c => c.name === activeCategory)?.count})</span>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${filterOpen ? "rotate-180" : ""}`} />
-            </button>
-            <AnimatePresence>
-              {filterOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-full left-0 right-0 mt-2 rounded-xl bg-muted/90 border border-border/30 backdrop-blur-xl overflow-hidden z-30"
-                >
-                  {categories.map((cat) => (
-                    <button
-                      key={cat.name}
-                      onClick={() => { setActiveCategory(cat.name); setFilterOpen(false); }}
-                      className={`flex items-center justify-between w-full px-4 py-3 text-sm font-medium cursor-pointer transition-colors ${activeCategory === cat.name ? "text-foreground bg-white/5" : "text-muted-foreground hover:text-foreground hover:bg-white/5"}`}
-                    >
-                      <span>{cat.name}</span>
-                      <span className="text-xs text-muted-foreground">{cat.count}</span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-          <div className="flex items-center gap-1 rounded-full bg-muted/30 p-1 border border-border/30 backdrop-blur-sm">
-            {([["grid", Grid3X3], ["detail", Layers]] as const).map(([key, Icon]) => (
-              <button
-                key={key}
-                onClick={() => setView(key)}
-                className="relative flex items-center px-2.5 py-2 rounded-full cursor-pointer z-10"
-              >
-                {view === key && (
-                  <motion.span
-                    layoutId="view-pill-mobile"
-                    className="absolute inset-0 rounded-full bg-foreground"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <Icon className={`relative z-10 w-4 h-4 ${view === key ? "text-background" : "text-muted-foreground"}`} />
-              </button>
-            ))}
-          </div>
-        </div>
-        </div>
-
         {/* Views */}
         {view === "grid" ? (
-          <div className="columns-2 sm:columns-3 md:columns-4 xl:columns-5 gap-3 md:gap-4">
-            {filtered.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                onClick={() => handleGridClick(index)}
-                onMouseMove={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const x = (e.clientX - rect.left) / rect.width - 0.5;
-                  const y = (e.clientY - rect.top) / rect.height - 0.5;
-                  e.currentTarget.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.03)`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)";
-                }}
-                className="group relative rounded-xl overflow-hidden cursor-pointer transition-[box-shadow] duration-300 hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)] mb-3 md:mb-4 break-inside-avoid"
-                style={{ transition: "transform 0.2s ease-out, box-shadow 0.3s ease" }}
-              >
-                <img src={item.imageSrc} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                  <div>
-                    <p className="text-white font-bold text-sm">{item.title}</p>
-                    <p className="text-white/60 text-xs">{item.meta}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+          <div>
+            {activeCategory !== "All" && (
+              <div className="mb-4">
+                <img src={CATEGORY_INFO[activeCategory]?.image} alt={activeCategory} className="h-12 md:h-16 object-contain -rotate-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
+                <p className="text-muted-foreground text-sm mt-2">{CATEGORY_INFO[activeCategory]?.description}</p>
+              </div>
+            )}
+            {activeCategory === "All" ? (
+              <div className="space-y-12">
+                {categories.filter(c => c.name !== "All").map((cat) => {
+                  const items = WORKS.filter(w => w.category === cat.name);
+                  return (
+                    <div key={cat.name}>
+                      <div className="mb-4">
+                        <img src={CATEGORY_INFO[cat.name]?.image} alt={cat.name} className="h-12 md:h-16 object-contain -rotate-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
+                        <p className="text-muted-foreground text-sm mt-2">{CATEGORY_INFO[cat.name]?.description}</p>
+                      </div>
+                      <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-3 md:gap-4">
+                        {items.map((item) => {
+                          const globalIndex = filtered.findIndex(f => f.id === item.id);
+                          return (
+                            <motion.div key={item.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} onClick={() => handleGridClick(globalIndex)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; e.currentTarget.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.03)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)"; }} className="group relative rounded-xl overflow-hidden cursor-pointer transition-[box-shadow] duration-300 hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)] mb-3 md:mb-4 break-inside-avoid" style={{ transition: "transform 0.2s ease-out, box-shadow 0.3s ease" }}>
+                              <img src={item.imageSrc} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3"><div><p className="text-white font-bold text-sm">{item.title}</p><p className="text-white/60 text-xs">{item.meta}</p></div></div>
+                            </motion.div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-3 md:gap-4">
+                {filtered.map((item, index) => (
+                  <motion.div key={item.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }} onClick={() => handleGridClick(index)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; e.currentTarget.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.03)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)"; }} className="group relative rounded-xl overflow-hidden cursor-pointer transition-[box-shadow] duration-300 hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)] mb-3 md:mb-4 break-inside-avoid" style={{ transition: "transform 0.2s ease-out, box-shadow 0.3s ease" }}>
+                    <img src={item.imageSrc} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3"><div><p className="text-white font-bold text-sm">{item.title}</p><p className="text-white/60 text-xs">{item.meta}</p></div></div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
         ) : (
           <FocusRail items={filtered} initialIndex={selectedIndex} />

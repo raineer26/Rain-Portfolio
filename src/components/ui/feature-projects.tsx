@@ -46,7 +46,7 @@ const projects: Project[] = [
     title: "MathPulse AI — Intelligent Math Tutor",
     description:
       "An AI-powered web application built as a capstone project. Helps students learn math through interactive problem-solving and intelligent feedback.",
-    url: "https://huggingface.co/spaces/Deign86/mathpulse-ai",
+    url: "https://deign86-mathpulse-ai.static.hf.space",
   },
   {
     value: "gallery",

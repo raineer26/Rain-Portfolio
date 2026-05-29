@@ -52,18 +52,9 @@ function SlideshowBg({ images, side = "right" }: { images: string[]; side?: "lef
 function ScrollProgressBar({ containerRef }: { containerRef: React.RefObject<HTMLDivElement> }) {
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start center", "end center"] });
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 720]);
+  const topPercent = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const [activePoint, setActivePoint] = useState(0);
   const [pulse, setPulse] = useState(false);
-  const [trackHeight, setTrackHeight] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const y = useTransform(scrollYProgress, [0, 1], [0, trackHeight - 56]);
-
-  useEffect(() => {
-    if (trackRef.current) setTrackHeight(trackRef.current.offsetHeight);
-    const handleResize = () => { if (trackRef.current) setTrackHeight(trackRef.current.offsetHeight); };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (v) => {
@@ -80,7 +71,8 @@ function ScrollProgressBar({ containerRef }: { containerRef: React.RefObject<HTM
   return (
     <div className="absolute right-6 md:right-10 top-0 bottom-0 z-20 hidden md:flex flex-col items-center">
       {/* Track line with gradient */}
-      <div ref={trackRef} className="relative h-full w-[2px] rounded-full bg-gradient-to-b from-purple-500/30 via-emerald-500/30 to-pink-500/30">
+      <div className="relative h-full w-[40px] flex flex-col items-center">
+        <div className="absolute left-1/2 -translate-x-1/2 h-full w-[2px] rounded-full bg-gradient-to-b from-purple-500/30 via-emerald-500/30 to-pink-500/30" />
         {/* 3 progress points */}
         {[0, 50, 100].map((pos, i) => (
           <motion.div
@@ -94,16 +86,15 @@ function ScrollProgressBar({ containerRef }: { containerRef: React.RefObject<HTM
           </motion.div>
         ))}
 
-        {/* Sliding icon */}
         <motion.div
           className="absolute left-1/2 -translate-x-1/2 z-10"
-          style={{ y }}
+          style={{ top: useTransform(topPercent, (v) => `${v}%`) }}
         >
           <motion.img
             src="/progress_bar_icon.png"
             alt="progress"
             style={{ rotate }}
-            className="w-14 h-14 drop-shadow-[0_0_10px_rgba(200,120,255,0.5)]"
+            className="w-[100px] h-[100px] object-contain drop-shadow-[0_0_10px_rgba(200,120,255,0.5)]"
             animate={pulse ? { scale: [1, 1.3, 1] } : {}}
             transition={{ duration: 0.5 }}
           />
