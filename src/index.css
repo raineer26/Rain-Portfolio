@@ -2,14 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
 @theme inline {
-  --color-background: oklch(0.2 0 0);
+  --color-background: oklch(0.23 0 0);
   --color-foreground: oklch(0.985 0 0);
   --color-primary: oklch(0.785 0.115 274);
   --color-primary-foreground: oklch(0.985 0 0);
   --color-secondary: oklch(0.6 0.1 250);
   --color-secondary-foreground: oklch(0.985 0 0);
   --color-muted: oklch(0.23 0 0);
-  --color-muted-foreground: oklch(0.556 0 0);
+  --color-muted-foreground: oklch(0.75 0 0);
   --color-accent: oklch(0.27 0 0);
   --color-accent-foreground: oklch(0.985 0 0);
   --color-border: oklch(0.32 0 0);
@@ -20,14 +20,14 @@
 }
 
 :root {
-  --background: oklch(0.2 0 0);
+  --background: oklch(0.23 0 0);
   --foreground: oklch(0.985 0 0);
   --primary: oklch(0.785 0.115 274);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.6 0.1 250);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.23 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.75 0 0);
   --accent: oklch(0.27 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --border: oklch(0.32 0 0);
@@ -50,7 +50,7 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.04;
+  opacity: 0.08;
   background-image: radial-gradient(circle, oklch(0.985 0 0) 1px, transparent 1px);
   background-size: 20px 20px;
 }

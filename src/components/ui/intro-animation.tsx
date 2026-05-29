@@ -86,7 +86,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
             initial={{ opacity: 0, y: -20 }}
             animate={phase === "scene2" || phase === "done" ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xs sm:text-sm tracking-[0.4em] text-primary/70 uppercase mb-6 font-medium"
+            className="text-xs sm:text-sm tracking-[0.4em] text-primary/70 uppercase mb-6 font-black"
           >
             Welcome to
           </motion.p>
@@ -145,7 +145,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center px-4"
             >
-              <p className="text-xs sm:text-sm tracking-[0.4em] text-muted-foreground uppercase mb-4">Step into</p>
+              <p className="text-xs sm:text-sm tracking-[0.4em] text-muted-foreground uppercase mb-4 font-black">Step into</p>
               <h1 className="text-3xl sm:text-5xl md:text-7xl font-light tracking-tight text-foreground">
                 A World of Creativity
               </h1>

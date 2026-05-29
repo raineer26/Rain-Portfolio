@@ -49,14 +49,14 @@ const projects: Project[] = [
     url: "https://deign86-mathpulse-ai.static.hf.space",
   },
   {
-    value: "gallery",
+    value: "vserve",
     icon: <Palette className="h-auto w-4 shrink-0" />,
-    label: "Art Gallery",
-    badge: "Personal Portfolio",
-    title: "Art of Rain — Artwork Collection",
+    label: "V-Serve",
+    badge: "Web Application",
+    title: "V-Serve — ARTA Feedback System",
     description:
-      "A showcase of my digital illustrations, character designs, and traditional artwork compiled into a personal art portfolio.",
-    url: "https://my-portfolio-alpha-tan-92.vercel.app/index.html",
+      "A feedback and service rating system built for government compliance with ARTA standards. Features real-time analytics and user-friendly survey interfaces.",
+    url: "https://v-serve-arta-feedback.vercel.app",
   },
 ];
 

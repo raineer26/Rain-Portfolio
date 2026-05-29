@@ -70,7 +70,7 @@ export function SlideTabsNavbar() {
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block">
         <ul
           onMouseLeave={() => updateCursor(selected)}
-          className="relative flex w-fit rounded-full border border-white/10 bg-white/5 backdrop-blur-xl p-1.5 shadow-lg shadow-black/20"
+          className="relative flex w-fit rounded-full border border-white/10 backdrop-blur-xl p-1.5 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.1),inset_0_-1px_2px_rgba(0,0,0,0.3)] hover:bg-[linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))] hover:border-white/20 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.15)] transition-all duration-300"
         >
           {NAV_ITEMS.map((item, i) => (
             <Tab
