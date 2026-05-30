@@ -145,7 +145,7 @@ function App() {
                     </div>
 
                     {/* Bottom row: Dev Stack + Collaboration */}
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4">
                         <h3 className="text-xs font-bold uppercase tracking-widest text-foreground/50 mb-2">Dev Stack</h3>
                         <div className="flex flex-wrap gap-1.5">

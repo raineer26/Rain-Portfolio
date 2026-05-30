@@ -30,7 +30,7 @@ export function PortfolioGallery({ images: customImages, className = "", cardsOn
     const cardImages = images.filter(img => img.src.includes("/cards/"));
     return (
       <div className={`relative overflow-visible ${className}`}>
-        <div className="flex -space-x-60 md:-space-x-64 items-end justify-center">
+        <div className="flex -space-x-40 sm:-space-x-52 md:-space-x-64 items-end justify-center">
           {cardImages.map((image, index) => {
             const totalImages = cardImages.length;
             const middle = Math.floor(totalImages / 2);

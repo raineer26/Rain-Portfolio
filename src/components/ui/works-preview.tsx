@@ -94,7 +94,7 @@ function ScrollProgressBar({ containerRef }: { containerRef: React.RefObject<HTM
             src="/progress_bar_icon.png"
             alt="progress"
             style={{ rotate }}
-            className="w-[100px] h-[100px] object-contain drop-shadow-[0_0_10px_rgba(200,120,255,0.5)]"
+            className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] object-contain drop-shadow-[0_0_10px_rgba(200,120,255,0.5)]"
             animate={pulse ? { scale: [1, 1.3, 1] } : {}}
             transition={{ duration: 0.5 }}
           />
@@ -144,9 +144,9 @@ export function WorksPreview() {
               </div>
               <div className="relative flex-1 flex items-center justify-center">
                 {/* Fanned cards behind */}
-                <img src="/cards/mythical_1.webp" alt="" className="absolute w-32 md:w-44 rounded-lg opacity-40 rotate-[-12deg] translate-x-[-40%] translate-y-[10%] z-0" />
-                <img src="/cards/rare_1.webp" alt="" className="absolute w-32 md:w-44 rounded-lg opacity-30 rotate-[10deg] translate-x-[40%] translate-y-[-10%] z-0" />
-                <img src="/cards/eagle_CARD.webp" alt="" className="absolute w-28 md:w-36 rounded-lg opacity-25 rotate-[20deg] translate-x-[20%] translate-y-[30%] z-0" />
+                <img src="/cards/mythical_1.webp" alt="" className="absolute hidden md:block w-32 md:w-44 rounded-lg opacity-40 rotate-[-12deg] translate-x-[-40%] translate-y-[10%] z-0" />
+                <img src="/cards/rare_1.webp" alt="" className="absolute hidden md:block w-32 md:w-44 rounded-lg opacity-30 rotate-[10deg] translate-x-[40%] translate-y-[-10%] z-0" />
+                <img src="/cards/eagle_CARD.webp" alt="" className="absolute hidden md:block w-28 md:w-36 rounded-lg opacity-25 rotate-[20deg] translate-x-[20%] translate-y-[30%] z-0" />
                 <motion.img
                   src="/preview_game.png"
                   alt="Siren illustration"
@@ -182,8 +182,8 @@ export function WorksPreview() {
               </div>
               <div className="relative flex-1 flex items-center justify-center">
                 {/* Fanned cards behind */}
-                <img src="/logos/LOGO_mathpulse_ai.webp" alt="" className="absolute w-32 md:w-44 rounded-lg opacity-40 rotate-[12deg] translate-x-[35%] translate-y-[10%] z-0" />
-                <img src="/maps/MAP_gora_na_explorer.webp" alt="" className="absolute w-32 md:w-44 rounded-lg opacity-30 rotate-[-10deg] translate-x-[-35%] translate-y-[-10%] z-0" />
+                <img src="/logos/LOGO_mathpulse_ai.webp" alt="" className="absolute hidden md:block w-32 md:w-44 rounded-lg opacity-40 rotate-[12deg] translate-x-[35%] translate-y-[10%] z-0" />
+                <img src="/maps/MAP_gora_na_explorer.webp" alt="" className="absolute hidden md:block w-32 md:w-44 rounded-lg opacity-30 rotate-[-10deg] translate-x-[-35%] translate-y-[-10%] z-0" />
                 <motion.img
                   src="/logos/LOGO_gora_na_explorer.webp"
                   alt="Brand preview"

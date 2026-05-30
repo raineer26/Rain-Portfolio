@@ -8,7 +8,7 @@ import { FlipReveal, FlipRevealItem } from "@/components/ui/flip-reveal";
 import { ScrollTiltedGrid } from "@/components/ui/scroll-tilted-grid";
 import { Badge } from "@/components/ui/badge";
 
-type WorkItem = FocusRailItem & { category: string };
+type WorkItem = FocusRailItem & { category: string; videoSrc?: string };
 
 const WORKS: WorkItem[] = [
   { id: 1, title: "Manananggal", description: "A mythical creature card featuring the Filipino folklore Manananggal, designed for a tabletop strategy game with dark fantasy aesthetics.", meta: "Game Card • Mythical", imageSrc: "/cards/mythical_1.webp", category: "Game Cards" },
@@ -21,16 +21,47 @@ const WORKS: WorkItem[] = [
   { id: 8, title: "Tarsier", description: "A mystical tarsier card with oversized luminous eyes, blending cute aesthetics with supernatural energy.", meta: "Game Card • Rare", imageSrc: "/cards/tarsier_CARD.webp", category: "Game Cards" },
   { id: 9, title: "Gora Na Explorer", description: "A brand identity for Gora Na Explorer, combining adventure-inspired typography with nature-themed visual elements.", meta: "Logo Design", imageSrc: "/logos/LOGO_gora_na_explorer.webp", category: "Logos" },
   { id: 10, title: "MathPulse AI", description: "A modern tech logo for MathPulse AI, featuring geometric precision and vibrant gradients that convey intelligence and innovation.", meta: "Logo Design", imageSrc: "/logos/LOGO_mathpulse_ai.webp", category: "Logos" },
+  { id: 38, title: "Friize", description: "A playful and refreshing logo for the Friize beverage brand, capturing the essence of fruity frozen drinks.", meta: "Logo Design", imageSrc: "/logo_friize.png", category: "Logos" },
+  { id: 39, title: "Xandata Studios", description: "A bold logo for Xandata Studios, combining sharp geometry with a modern gaming aesthetic.", meta: "Logo Design", imageSrc: "/logo_xandata_studios.png", category: "Logos" },
   { id: 11, title: "Gora Na Explorer Map", description: "A hand-illustrated exploration map for the Gora Na Explorer project, featuring detailed terrain, trails, and points of interest.", meta: "Game Map", imageSrc: "/maps/MAP_gora_na_explorer.webp", category: "Maps" },
+  { id: 12, title: "Pixel Map — Gora Na Explorer", description: "A pixel art rendition of the Gora Na Explorer map, reimagined in a retro game style.", meta: "Pixel Map", imageSrc: "/map_pixel_gora_na_explorer.webp", category: "Maps" },
+  { id: 13, title: "Burger Poster", description: "A bold promotional poster for a burger brand with dynamic composition and appetizing visuals.", meta: "Poster Design", imageSrc: "/poster_burger.webp", category: "Posters" },
+  { id: 14, title: "Coffee Poster", description: "A warm-toned poster design for a coffee brand, blending cozy aesthetics with modern typography.", meta: "Poster Design", imageSrc: "/poster_coffee.webp", category: "Posters" },
+  { id: 15, title: "Artist Profile Poster", description: "A self-promotional poster showcasing artistic identity with creative layout and visual storytelling.", meta: "Poster Design", imageSrc: "/poster_artist_profile.webp", category: "Posters" },
+  { id: 16, title: "Women's Day Poster", description: "A celebratory poster design honoring women with empowering visuals and vibrant colors.", meta: "Poster Design", imageSrc: "/poster_women.webp", category: "Posters" },
+  { id: 17, title: "Gora Na Explorer Banner", description: "A promotional banner for the Gora Na Explorer project featuring adventure-themed visuals.", meta: "Banner Design", imageSrc: "/gora_na_explorer_banner.webp", category: "Posters" },
+  { id: 18, title: "Animation — Storyboard Assets", description: "Produced the storyboard and visual assets for this animated short. Storyboarding and asset creation by Art of Rain.", meta: "Animation Assets", imageSrc: "", videoSrc: "https://www.youtube.com/embed/i5E9uWphUD8?autoplay=1&mute=1&modestbranding=1&rel=0", category: "Motion & Story" },
+  { id: 19, title: "Storyboard — Page 1", description: "Opening scene of an original storyboard sequence.", meta: "Storyboard", imageSrc: "/storyboard_1.webp", category: "Motion & Story" },
+  { id: 20, title: "Storyboard — Page 2", description: "Character introduction and scene setup.", meta: "Storyboard", imageSrc: "/storyboard_2.webp", category: "Motion & Story" },
+  { id: 21, title: "Storyboard — Page 3", description: "Rising action and conflict development.", meta: "Storyboard", imageSrc: "/storyboard_3.webp", category: "Motion & Story" },
+  { id: 22, title: "Storyboard — Page 4", description: "Dramatic turning point in the narrative.", meta: "Storyboard", imageSrc: "/storyboard_4.webp", category: "Motion & Story" },
+  { id: 23, title: "Storyboard — Page 5", description: "Climactic sequence with dynamic framing.", meta: "Storyboard", imageSrc: "/storyboard_5.webp", category: "Motion & Story" },
+  { id: 24, title: "Storyboard — Page 6", description: "Resolution and emotional payoff.", meta: "Storyboard", imageSrc: "/storyboard_6.webp", category: "Motion & Story" },
+  { id: 25, title: "Storyboard — Page 7", description: "Epilogue scene with closing visuals.", meta: "Storyboard", imageSrc: "/storyboard_7.webp", category: "Motion & Story" },
+  { id: 26, title: "Storyboard — Page 8", description: "Extended narrative continuation.", meta: "Storyboard", imageSrc: "/storyboard_8.webp", category: "Motion & Story" },
+  { id: 27, title: "Storyboard — Page 9", description: "Character development sequence.", meta: "Storyboard", imageSrc: "/storyboard_9.webp", category: "Motion & Story" },
+  { id: 28, title: "Storyboard — Page 10", description: "Action sequence with dynamic panels.", meta: "Storyboard", imageSrc: "/storyboard_10.webp", category: "Motion & Story" },
+  { id: 29, title: "Storyboard — Page 11", description: "Emotional climax of the story.", meta: "Storyboard", imageSrc: "/storyboard_11.webp", category: "Motion & Story" },
+  { id: 30, title: "Storyboard — Page 12", description: "Final page — story conclusion.", meta: "Storyboard", imageSrc: "/storyboard_12.webp", category: "Motion & Story" },
+  { id: 31, title: "Bayanihan Comic", description: "A comic-style illustration depicting the Filipino spirit of Bayanihan — community and togetherness.", meta: "Comic Art", imageSrc: "/bayanihan_comic.webp", category: "Motion & Story" },
+  { id: 31, title: "Crafted by Print Habit — Moodboard", description: "A visual moodboard defining the brand direction for Crafted by Print Habit's souvenir business.", meta: "Moodboard", imageSrc: "/moodboard_crafted_by.webp", category: "Concept Design" },
+  { id: 32, title: "Art of Rain — Moodboard", description: "An early moodboard exploring the visual identity and aesthetic direction for the Art of Rain brand.", meta: "Moodboard", imageSrc: "/moodboard_old_ver_art_of_rain.png", category: "Concept Design" },
+  { id: 33, title: "Friize — Grape", description: "Grape flavor variant of the Friize product line, featuring vibrant purple tones and fresh fruit imagery.", meta: "Product Design", imageSrc: "/grape_friize.png", category: "Concept Design" },
+  { id: 34, title: "Friize — Lemon", description: "Lemon flavor variant with zesty yellow accents and citrus-inspired design elements.", meta: "Product Design", imageSrc: "/lemon_friize.png", category: "Concept Design" },
+  { id: 35, title: "Friize — Lime", description: "Lime flavor variant featuring cool green tones and refreshing visual language.", meta: "Product Design", imageSrc: "/lime_friize.png", category: "Concept Design" },
+  { id: 36, title: "Friize — Orange", description: "Orange flavor variant with warm citrus colors and energetic design.", meta: "Product Design", imageSrc: "/orange_friize.png", category: "Concept Design" },
+  { id: 37, title: "Friize — Product Mockup", description: "A complete product mockup showcasing all four Friize flavor variants together in a realistic presentation.", meta: "Product Mockup", imageSrc: "/product_mockup.png", category: "Concept Design" },
 ];
 
-const CATEGORIES_ORDER = ["All", "Game Cards", "Logos", "Maps", "Posters"];
+const CATEGORIES_ORDER = ["All", "Game Cards", "Logos", "Maps", "Posters", "Motion & Story", "Concept Design"];
 
 const CATEGORY_INFO: Record<string, { description: string; image: string }> = {
   "Game Cards": { description: "Mythical creatures, rare beasts, and legendary beings — illustrated for immersive tabletop card games.", image: "/game_cards.png" },
   "Logos": { description: "Brand identities crafted with bold typography and clean geometry for startups and creative projects.", image: "/logo_designs.png" },
   "Maps": { description: "Hand-illustrated exploration maps with detailed terrain, trails, and points of interest.", image: "/game_map.png" },
   "Posters": { description: "Vibrant promotional designs blending illustration with bold typography.", image: "/posters.png" },
+  "Motion & Story": { description: "Storyboards, comics, and animation — visual narratives brought to life frame by frame.", image: "/motion_story.png" },
+  "Concept Design": { description: "Moodboards, product designs, and visual explorations that shape creative direction.", image: "/concept_design.png" },
 };
 
 export function WorksPage() {
@@ -62,25 +93,23 @@ export function WorksPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground px-4 py-10 relative overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground px-4 py-10 relative">
       {/* Background decorations */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="fixed inset-0 pointer-events-none z-0">
         {/* Grid texture */}
         <div
-          className="absolute inset-0 opacity-100"
+          className="absolute inset-0"
           style={{
             backgroundSize: "60px 60px",
             backgroundImage: "linear-gradient(to right, oklch(0.985 0 0 / 0.06) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.985 0 0 / 0.06) 1px, transparent 1px)",
-            maskImage: "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
-            WebkitMaskImage: "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
           }}
         />
         {/* Primary radial glow — top left */}
-        <div className="absolute -top-[20%] -left-[10%] w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,oklch(0.785_0.115_274/0.4)_0%,transparent_70%)]" />
+        <div className="absolute -top-[20%] -left-[10%] w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,oklch(0.785_0.115_274/0.25)_0%,transparent_70%)]" />
         {/* Secondary radial glow — bottom right */}
-        <div className="absolute -bottom-[15%] -right-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,oklch(0.6_0.1_250/0.35)_0%,transparent_70%)]" />
+        <div className="absolute -bottom-[15%] -right-[10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,oklch(0.6_0.1_250/0.2)_0%,transparent_70%)]" />
         {/* Accent glow — center */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,oklch(0.785_0.115_274/0.15)_0%,transparent_60%)]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,oklch(0.785_0.115_274/0.12)_0%,transparent_60%)]" />
         {/* Noise texture overlay */}
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
         {/* Floating shapes */}
@@ -90,13 +119,6 @@ export function WorksPage() {
         <div className="absolute top-[30%] left-[8%] w-2 h-2 bg-secondary/30 rounded-full" />
       </div>
 
-      {/* Detail view full-page blurred background */}
-      {view === "detail" && filtered.length > 0 && (
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <img src={filtered[0].imageSrc} alt="" className="w-full h-full object-cover blur-[80px] opacity-15 saturate-150" />
-        </div>
-      )}
-
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="pb-4">
@@ -105,7 +127,7 @@ export function WorksPage() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => navigate(-1)}
+              onClick={() => view === "detail" ? setView("grid") : navigate(-1)}
               className="p-2 rounded-full bg-muted/50 border border-border/50 hover:bg-muted transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -169,10 +191,24 @@ export function WorksPage() {
             </div>
           </div>
 
-          {/* Centered title */}
+          {/* Centered title — dynamic in detail view */}
           <div className="text-center mb-4">
-            <img src="/creative_works.png" alt="Creative Works" className="h-16 md:h-24 object-contain mx-auto -rotate-2 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]" />
-            <p className="text-muted-foreground text-sm md:text-base mt-3 max-w-lg mx-auto">Full collection of illustrations, designs, and visual projects.</p>
+            {view === "detail" && activeCategory !== "All" && CATEGORY_INFO[activeCategory] ? (
+              <>
+                <img src={CATEGORY_INFO[activeCategory].image} alt={activeCategory} className="h-12 md:h-16 object-contain mx-auto -rotate-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
+                <p className="text-muted-foreground text-sm md:text-base mt-2 max-w-lg mx-auto">{CATEGORY_INFO[activeCategory].description}</p>
+              </>
+            ) : view === "detail" && activeCategory === "All" ? (
+              <>
+                <img src={CATEGORY_INFO[filtered[selectedIndex]?.category]?.image || "/creative_works.png"} alt="" className="h-12 md:h-16 object-contain mx-auto -rotate-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
+                <p className="text-muted-foreground text-sm md:text-base mt-2 max-w-lg mx-auto">{CATEGORY_INFO[filtered[selectedIndex]?.category]?.description || "Full collection of illustrations, designs, and visual projects."}</p>
+              </>
+            ) : (
+              <>
+                <img src="/creative_works.png" alt="Creative Works" className="h-16 md:h-24 object-contain mx-auto -rotate-2 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]" />
+                <p className="text-muted-foreground text-sm md:text-base mt-3 max-w-lg mx-auto">Full collection of illustrations, designs, and visual projects.</p>
+              </>
+            )}
           </div>
         </div>
         {/* Views */}
@@ -194,12 +230,16 @@ export function WorksPage() {
                         <img src={CATEGORY_INFO[cat.name]?.image} alt={cat.name} className="h-12 md:h-16 object-contain -rotate-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
                         <p className="text-muted-foreground text-sm mt-2">{CATEGORY_INFO[cat.name]?.description}</p>
                       </div>
-                      <div className="columns-2 sm:columns-3 md:columns-5 gap-3 md:gap-4">
+                      <div className={`gap-3 md:gap-4 ${items.length <= 2 ? "columns-2" : items.length <= 4 ? "columns-2 sm:columns-3 md:columns-4" : "columns-2 sm:columns-3 md:columns-5"}`}>
                         {items.map((item) => {
                           const globalIndex = filtered.findIndex(f => f.id === item.id);
                           return (
                             <motion.div key={item.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} onClick={() => handleGridClick(globalIndex)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; e.currentTarget.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.03)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)"; }} className="group relative rounded-xl overflow-hidden cursor-pointer transition-[box-shadow] duration-300 hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)] mb-3 md:mb-4 break-inside-avoid" style={{ transition: "transform 0.2s ease-out, box-shadow 0.3s ease" }}>
-                              <img src={item.imageSrc} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
+                              {item.videoSrc ? (
+                                <div className="w-full aspect-video rounded-xl overflow-hidden"><iframe src={item.videoSrc} className="w-full h-full" allowFullScreen /></div>
+                              ) : (
+                                <img src={item.imageSrc} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
+                              )}
                               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3"><div><p className="text-white font-bold text-sm">{item.title}</p><p className="text-white/60 text-xs">{item.meta}</p></div></div>
                             </motion.div>
                           );
@@ -213,7 +253,11 @@ export function WorksPage() {
               <div className="columns-2 sm:columns-3 md:columns-5 gap-3 md:gap-4">
                 {filtered.map((item, index) => (
                   <motion.div key={item.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }} onClick={() => handleGridClick(index)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; e.currentTarget.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.03)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)"; }} className="group relative rounded-xl overflow-hidden cursor-pointer transition-[box-shadow] duration-300 hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)] mb-3 md:mb-4 break-inside-avoid" style={{ transition: "transform 0.2s ease-out, box-shadow 0.3s ease" }}>
-                    <img src={item.imageSrc} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
+                    {item.videoSrc ? (
+                      <div className="w-full aspect-video rounded-xl overflow-hidden"><iframe src={item.videoSrc} className="w-full h-full" allowFullScreen /></div>
+                    ) : (
+                      <img src={item.imageSrc} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3"><div><p className="text-white font-bold text-sm">{item.title}</p><p className="text-white/60 text-xs">{item.meta}</p></div></div>
                   </motion.div>
                 ))}
@@ -221,7 +265,7 @@ export function WorksPage() {
             )}
           </div>
         ) : (
-          <FocusRail items={filtered} initialIndex={selectedIndex} />
+          <FocusRail items={filtered} initialIndex={selectedIndex} onActiveChange={setSelectedIndex} />
         )}
       </div>
       <BackToTop />

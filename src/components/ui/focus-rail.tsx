@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
+import { useState } from "react";
 import { motion, AnimatePresence, type PanInfo } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type FocusRailItem = {
@@ -10,6 +11,7 @@ export type FocusRailItem = {
   title: string;
   description?: string;
   imageSrc: string;
+  videoSrc?: string;
   meta?: string;
 };
 
@@ -17,6 +19,7 @@ interface FocusRailProps {
   items: FocusRailItem[];
   initialIndex?: number;
   className?: string;
+  onActiveChange?: (index: number) => void;
 }
 
 function wrap(min: number, max: number, v: number) {
@@ -27,13 +30,16 @@ function wrap(min: number, max: number, v: number) {
 const BASE_SPRING = { type: "spring" as const, stiffness: 300, damping: 30, mass: 1 };
 const TAP_SPRING = { type: "spring" as const, stiffness: 450, damping: 18, mass: 1 };
 
-export function FocusRail({ items, initialIndex = 0, className }: FocusRailProps) {
-  const [active, setActive] = React.useState(initialIndex);
+export function FocusRail({ items, initialIndex = 0, className, onActiveChange }: FocusRailProps) {
+  const [active, setActive] = useState(initialIndex);
+  const [zoomSrc, setZoomSrc] = useState<string | null>(null);
   const lastWheelTime = React.useRef<number>(0);
 
   const count = items.length;
   const activeIndex = wrap(0, count, active);
   const activeItem = items[activeIndex];
+
+  React.useEffect(() => { onActiveChange?.(activeIndex); }, [activeIndex, onActiveChange]);
 
   const handlePrev = React.useCallback(() => setActive((p) => p - 1), []);
   const handleNext = React.useCallback(() => setActive((p) => p + 1), []);
@@ -126,7 +132,11 @@ export function FocusRail({ items, initialIndex = 0, className }: FocusRailProps
                 style={{ transformStyle: "preserve-3d" }}
                 onClick={() => { if (offset !== 0) setActive((p) => p + offset); }}
               >
-                <img src={item.imageSrc} alt={item.title} className="w-full h-auto rounded-2xl pointer-events-none" />
+                {item.videoSrc ? (
+                  offset === 0 ? <div className="w-full aspect-video rounded-2xl overflow-hidden"><iframe src={item.videoSrc} className="w-full h-full" allowFullScreen /></div> : <div className="w-full aspect-video rounded-2xl bg-muted/30 flex items-center justify-center text-muted-foreground text-sm">▶ Video</div>
+                ) : (
+                  <img src={item.imageSrc} alt={item.title} className={`w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-2xl ${offset === 0 ? "cursor-zoom-in" : ""}`} onClick={(e) => { if (offset === 0) { e.stopPropagation(); setZoomSrc(item.imageSrc); } }} />
+                )}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
               </motion.div>
             );
@@ -167,6 +177,22 @@ export function FocusRail({ items, initialIndex = 0, className }: FocusRailProps
           </div>
         </div>
       </div>
+
+      {/* Zoom overlay */}
+      <AnimatePresence>
+        {zoomSrc && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-zoom-out"
+            onClick={() => setZoomSrc(null)}
+          >
+            <button onClick={() => setZoomSrc(null)} className="absolute top-4 right-4 text-white/70 hover:text-white cursor-pointer"><X className="w-6 h-6" /></button>
+            <img src={zoomSrc} alt="" className="max-w-full max-h-[90vh] object-contain rounded-xl" />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
