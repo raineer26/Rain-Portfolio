@@ -11,11 +11,23 @@ import { Badge } from "@/components/ui/badge";
 type WorkItem = FocusRailItem & { category: string; videoSrc?: string; subgroup?: string };
 
 const WORKS: WorkItem[] = [
-  // Game Cards — Character
-  { id: 1, title: "Whale Shark", description: "A majestic ocean creature card featuring a deep-sea whale with bioluminescent accents.", meta: "Character Card", imageSrc: "/cards/whale_CARD.webp", category: "Game Cards", subgroup: "Character" },
-  { id: 2, title: "Carabao", description: "A powerful beast card depicting the iconic Filipino carabao with earthy tones and cultural symbolism.", meta: "Character Card", imageSrc: "/cards/carabao_CARD.webp", category: "Game Cards", subgroup: "Character" },
-  { id: 3, title: "Eagle", description: "A legendary Philippine Eagle card with fierce detail and dynamic pose.", meta: "Character Card", imageSrc: "/cards/eagle_CARD.webp", category: "Game Cards", subgroup: "Character" },
-  { id: 4, title: "Tarsier", description: "A mystical tarsier card with oversized luminous eyes, blending cute aesthetics with supernatural energy.", meta: "Character Card", imageSrc: "/cards/tarsier_CARD.webp", category: "Game Cards", subgroup: "Character" },
+  // Game Cards — Character & Skills
+  { id: 4, title: "Tarsier", description: "A mystical tarsier card with oversized luminous eyes, blending cute aesthetics with supernatural energy.", meta: "Character Card", imageSrc: "/cards/tarsier_CARD.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 44, title: "Tarsier — Skill 1", description: "First skill card for the Tarsier character.", meta: "Skill Card", imageSrc: "/cards/skill_tarsier_1.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 45, title: "Tarsier — Skill 2", description: "Second skill card for the Tarsier character.", meta: "Skill Card", imageSrc: "/cards/skill_tarsier_2.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 46, title: "Tarsier — Ultimate", description: "Ultimate ability card for the Tarsier character.", meta: "Skill Card", imageSrc: "/cards/skill_tarsier_ultimate.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 2, title: "Carabao", description: "A powerful beast card depicting the iconic Filipino carabao with earthy tones and cultural symbolism.", meta: "Character Card", imageSrc: "/cards/carabao_CARD.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 41, title: "Carabao — Skill 1", description: "First skill card for the Carabao character.", meta: "Skill Card", imageSrc: "/cards/skill_carabao_1.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 42, title: "Carabao — Skill 2", description: "Second skill card for the Carabao character.", meta: "Skill Card", imageSrc: "/cards/skill_carabao_2.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 43, title: "Carabao — Ultimate", description: "Ultimate ability card for the Carabao character.", meta: "Skill Card", imageSrc: "/cards/skill_carabao_ultimate.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 1, title: "Whale Shark", description: "A majestic ocean creature card featuring a deep-sea whale with bioluminescent accents.", meta: "Character Card", imageSrc: "/cards/whale_CARD.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 47, title: "Whale — Swim", description: "First skill card for the Whale character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_whale_1.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 48, title: "Whale — Bubble Trap", description: "Second skill card for the Whale character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_whale_2.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 49, title: "Whale — Tidal Reversal", description: "Ultimate ability card for the Whale character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_whale_ultimate.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 3, title: "Eagle", description: "A legendary Philippine Eagle card with fierce detail and dynamic pose.", meta: "Character Card", imageSrc: "/cards/eagle_CARD.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 50, title: "Eagle — Dive Forward", description: "First skill card for the Eagle character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_eagle_1.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 51, title: "Eagle — Gust of Wind", description: "Second skill card for the Eagle character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_eagle_2.webp", category: "Game Cards", subgroup: "Character & Skills" },
+  { id: 52, title: "Eagle — Sky Soar", description: "Ultimate ability card for the Eagle character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_eagle_ultimate.webp", category: "Game Cards", subgroup: "Character & Skills" },
   // Game Cards — Mythical
   { id: 5, title: "Manananggal", description: "A mythical creature card featuring the Filipino folklore Manananggal, designed for dark fantasy aesthetics.", meta: "Mythical Card", imageSrc: "/cards/mythical_1.webp", category: "Game Cards", subgroup: "Mythical" },
   { id: 6, title: "Aswang", description: "An eerie depiction of the Aswang from Philippine mythology, illustrated as a high-tier mythical card.", meta: "Mythical Card", imageSrc: "/cards/mythical_2.webp", category: "Game Cards", subgroup: "Mythical" },
@@ -34,19 +46,6 @@ const WORKS: WorkItem[] = [
   { id: 17, title: "Balikbayan Box", description: "A supply card representing the iconic Filipino care package from overseas.", meta: "Common Card", imageSrc: "/cards/common_balikbayan_box.webp", category: "Game Cards", subgroup: "Common" },
   { id: 18, title: "Buwaya", description: "A common creature card featuring the Filipino crocodile with snapping jaws.", meta: "Common Card", imageSrc: "/cards/common_buwaya.webp", category: "Game Cards", subgroup: "Common" },
   { id: 40, title: "Lechon", description: "A common card featuring the iconic Filipino roasted pig, a symbol of celebration and feasts.", meta: "Common Card", imageSrc: "/cards/common_lechon.webp", category: "Game Cards", subgroup: "Common" },
-  // Game Cards — Skill Cards
-  { id: 41, title: "Carabao — Skill 1", description: "First skill card for the Carabao character.", meta: "Skill Card", imageSrc: "/cards/skill_carabao_1.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 42, title: "Carabao — Skill 2", description: "Second skill card for the Carabao character.", meta: "Skill Card", imageSrc: "/cards/skill_carabao_2.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 43, title: "Carabao — Ultimate", description: "Ultimate ability card for the Carabao character.", meta: "Skill Card", imageSrc: "/cards/skill_carabao_ultimate.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 44, title: "Tarsier — Skill 1", description: "First skill card for the Tarsier character.", meta: "Skill Card", imageSrc: "/cards/skill_tarsier_1.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 45, title: "Tarsier — Skill 2", description: "Second skill card for the Tarsier character.", meta: "Skill Card", imageSrc: "/cards/skill_tarsier_2.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 46, title: "Tarsier — Ultimate", description: "Ultimate ability card for the Tarsier character.", meta: "Skill Card", imageSrc: "/cards/skill_tarsier_ultimate.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 47, title: "Whale — Swim", description: "First skill card for the Whale character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_whale_1.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 48, title: "Whale — Bubble Trap", description: "Second skill card for the Whale character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_whale_2.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 49, title: "Whale — Tidal Reversal", description: "Ultimate ability card for the Whale character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_whale_ultimate.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 50, title: "Eagle — Dive Forward", description: "First skill card for the Eagle character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_eagle_1.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 51, title: "Eagle — Gust of Wind", description: "Second skill card for the Eagle character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_eagle_2.webp", category: "Game Cards", subgroup: "Skill Cards" },
-  { id: 52, title: "Eagle — Sky Soar", description: "Ultimate ability card for the Eagle character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_eagle_ultimate.webp", category: "Game Cards", subgroup: "Skill Cards" },
   // Game Cards — Mystery
   { id: 19, title: "3 Spaces Forward", description: "An advantage mystery card that moves the player forward.", meta: "Mystery • Advantage", imageSrc: "/cards/mystery_advantage_3_spaces_forward.webp", category: "Game Cards", subgroup: "Mystery" },
   { id: 20, title: "Get Common Card", description: "An advantage mystery card that grants a free common card.", meta: "Mystery • Advantage", imageSrc: "/cards/mystery_advantage_get_common.webp", category: "Game Cards", subgroup: "Mystery" },
@@ -275,7 +274,7 @@ export function WorksPage() {
                             return (
                               <div key={sg} className="mb-6">
                                 <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">{sg}</p>
-                                <div className={`gap-3 md:gap-4 grid grid-cols-2 sm:grid-cols-3 ${sgItems.length <= 4 ? "md:grid-cols-4" : "md:grid-cols-5"}`}>
+                                <div className={`gap-3 md:gap-4 grid grid-cols-2 sm:grid-cols-3 ${sg === "Character & Skills" ? "md:grid-cols-4" : sgItems.length <= 4 ? "md:grid-cols-4" : "md:grid-cols-5"}`}>
                                   {sgItems.map((item) => {
                                     const globalIndex = filtered.findIndex(f => f.id === item.id);
                                     return (

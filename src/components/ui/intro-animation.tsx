@@ -146,9 +146,7 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
               className="text-center px-4"
             >
               <p className="text-xs sm:text-sm tracking-[0.4em] text-muted-foreground uppercase mb-4 font-black">Step into</p>
-              <h1 className="text-3xl sm:text-5xl md:text-7xl font-light tracking-tight text-foreground">
-                A World of Creativity
-              </h1>
+              <img src="/world_of_creativity.png" alt="A World of Creativity" className="w-full max-w-xs sm:max-w-sm md:max-w-lg mx-auto" />
             </motion.div>
           </motion.div>
         )}
