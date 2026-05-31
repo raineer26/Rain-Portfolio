@@ -135,7 +135,7 @@ export function FocusRail({ items, initialIndex = 0, className, onActiveChange }
                 {item.videoSrc ? (
                   offset === 0 ? <div className="w-full aspect-video rounded-2xl overflow-hidden"><iframe src={item.videoSrc} className="w-full h-full" allowFullScreen /></div> : <div className="w-full aspect-video rounded-2xl bg-muted/30 flex items-center justify-center text-muted-foreground text-sm">▶ Video</div>
                 ) : (
-                  <img src={item.imageSrc} alt={item.title} className={`w-full max-h-[50vh] md:max-h-[60vh] object-contain rounded-2xl ${offset === 0 ? "cursor-zoom-in" : ""}`} onClick={(e) => { if (offset === 0) { e.stopPropagation(); setZoomSrc(item.imageSrc); } }} />
+                  <img src={item.imageSrc} alt={item.title} className={`w-full max-h-[70vh] md:max-h-[80vh] object-contain rounded-2xl ${offset === 0 ? "cursor-zoom-in" : ""}`} onClick={(e) => { if (offset === 0) { e.stopPropagation(); setZoomSrc(item.imageSrc); } }} />
                 )}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
               </motion.div>

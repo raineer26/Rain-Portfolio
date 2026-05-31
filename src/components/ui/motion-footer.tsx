@@ -351,11 +351,11 @@ export function CinematicFooter() {
                 <div ref={linksRef} className="flex flex-col items-center md:items-start gap-4 w-full">
                   {/* Primary CTAs */}
                   <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                    <MagneticButton as="a" href="#contact" className="footer-glass-pill px-8 py-4 rounded-full text-foreground font-bold text-sm md:text-base flex items-center gap-3 group">
+                    <MagneticButton as="a" href="#projects" className="footer-glass-pill px-8 py-4 rounded-full text-foreground font-bold text-sm md:text-base flex items-center gap-3 group">
                       <svg className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                       </svg>
-                      Contact Me
+                      Explore Portfolio!
                     </MagneticButton>
                     
                     <MagneticButton as="a" href="/Rosado_Resume.pdf" target="_blank" rel="noopener noreferrer" className="footer-glass-pill px-8 py-4 rounded-full text-foreground font-bold text-sm md:text-base flex items-center gap-3 group">
@@ -374,8 +374,8 @@ export function CinematicFooter() {
                     <MagneticButton as="a" href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="footer-glass-pill px-5 py-2.5 rounded-full text-muted-foreground font-medium text-xs md:text-sm hover:text-foreground">
                       LinkedIn
                     </MagneticButton>
-                    <MagneticButton as="a" href="https://behance.net/" target="_blank" rel="noopener noreferrer" className="footer-glass-pill px-5 py-2.5 rounded-full text-muted-foreground font-medium text-xs md:text-sm hover:text-foreground">
-                      Behance
+                    <MagneticButton as="a" href="#contact" className="footer-glass-pill px-5 py-2.5 rounded-full text-muted-foreground font-medium text-xs md:text-sm hover:text-foreground">
+                      Contact Me
                     </MagneticButton>
                   </div>
                 </div>

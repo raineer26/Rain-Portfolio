@@ -8,17 +8,54 @@ import { FlipReveal, FlipRevealItem } from "@/components/ui/flip-reveal";
 import { ScrollTiltedGrid } from "@/components/ui/scroll-tilted-grid";
 import { Badge } from "@/components/ui/badge";
 
-type WorkItem = FocusRailItem & { category: string; videoSrc?: string };
+type WorkItem = FocusRailItem & { category: string; videoSrc?: string; subgroup?: string };
 
 const WORKS: WorkItem[] = [
-  { id: 1, title: "Manananggal", description: "A mythical creature card featuring the Filipino folklore Manananggal, designed for a tabletop strategy game with dark fantasy aesthetics.", meta: "Game Card • Mythical", imageSrc: "/cards/mythical_1.webp", category: "Game Cards" },
-  { id: 2, title: "Aswang", description: "An eerie depiction of the Aswang from Philippine mythology, illustrated as a high-tier mythical card with atmospheric horror elements.", meta: "Game Card • Mythical", imageSrc: "/cards/mythical_2.webp", category: "Game Cards" },
-  { id: 3, title: "Mount Uwe", description: "A rare volcanic entity card featuring explosive lava effects and dramatic lighting, designed to convey raw elemental power.", meta: "Game Card • Rare", imageSrc: "/cards/rare_1.webp", category: "Game Cards" },
-  { id: 4, title: "Kulam", description: "A dark magic spell card with mystical hand gestures and glowing energy orbs, representing the Filipino concept of witchcraft.", meta: "Game Card • Rare", imageSrc: "/cards/rare_2.webp", category: "Game Cards" },
-  { id: 5, title: "Whale", description: "A majestic ocean creature card featuring a deep-sea whale with bioluminescent accents, designed for an aquatic expansion set.", meta: "Game Card • Rare", imageSrc: "/cards/whale_CARD.webp", category: "Game Cards" },
-  { id: 6, title: "Carabao", description: "A powerful beast card depicting the iconic Filipino carabao, illustrated with earthy tones and cultural symbolism.", meta: "Game Card • Rare", imageSrc: "/cards/carabao_CARD.webp", category: "Game Cards" },
-  { id: 7, title: "Eagle", description: "A legendary Philippine Eagle card with fierce detail and dynamic pose, representing the apex predator of the skies.", meta: "Game Card • Mythical", imageSrc: "/cards/eagle_CARD.webp", category: "Game Cards" },
-  { id: 8, title: "Tarsier", description: "A mystical tarsier card with oversized luminous eyes, blending cute aesthetics with supernatural energy.", meta: "Game Card • Rare", imageSrc: "/cards/tarsier_CARD.webp", category: "Game Cards" },
+  // Game Cards — Character
+  { id: 1, title: "Whale Shark", description: "A majestic ocean creature card featuring a deep-sea whale with bioluminescent accents.", meta: "Character Card", imageSrc: "/cards/whale_CARD.webp", category: "Game Cards", subgroup: "Character" },
+  { id: 2, title: "Carabao", description: "A powerful beast card depicting the iconic Filipino carabao with earthy tones and cultural symbolism.", meta: "Character Card", imageSrc: "/cards/carabao_CARD.webp", category: "Game Cards", subgroup: "Character" },
+  { id: 3, title: "Eagle", description: "A legendary Philippine Eagle card with fierce detail and dynamic pose.", meta: "Character Card", imageSrc: "/cards/eagle_CARD.webp", category: "Game Cards", subgroup: "Character" },
+  { id: 4, title: "Tarsier", description: "A mystical tarsier card with oversized luminous eyes, blending cute aesthetics with supernatural energy.", meta: "Character Card", imageSrc: "/cards/tarsier_CARD.webp", category: "Game Cards", subgroup: "Character" },
+  // Game Cards — Mythical
+  { id: 5, title: "Manananggal", description: "A mythical creature card featuring the Filipino folklore Manananggal, designed for dark fantasy aesthetics.", meta: "Mythical Card", imageSrc: "/cards/mythical_1.webp", category: "Game Cards", subgroup: "Mythical" },
+  { id: 6, title: "Aswang", description: "An eerie depiction of the Aswang from Philippine mythology, illustrated as a high-tier mythical card.", meta: "Mythical Card", imageSrc: "/cards/mythical_2.webp", category: "Game Cards", subgroup: "Mythical" },
+  { id: 7, title: "Maligno", description: "A dark spirit card representing the Filipino concept of malevolent supernatural entities.", meta: "Mythical Card", imageSrc: "/cards/mythical_maligno.webp", category: "Game Cards", subgroup: "Mythical" },
+  { id: 8, title: "Tikbalang", description: "A towering half-horse creature from Filipino folklore, illustrated with imposing presence.", meta: "Mythical Card", imageSrc: "/cards/mythical_tikbalang.webp", category: "Game Cards", subgroup: "Mythical" },
+  { id: 9, title: "Sirena", description: "A mesmerizing sea creature card depicting the Filipino mermaid with enchanting beauty.", meta: "Mythical Card", imageSrc: "/cards/mythical_sirena.webp", category: "Game Cards", subgroup: "Mythical" },
+  // Game Cards — Rare
+  { id: 10, title: "Mount Uwe", description: "A rare volcanic entity card featuring explosive lava effects and dramatic lighting.", meta: "Rare Card", imageSrc: "/cards/rare_1.webp", category: "Game Cards", subgroup: "Rare" },
+  { id: 11, title: "Kulam", description: "A dark magic spell card with mystical hand gestures and glowing energy orbs.", meta: "Rare Card", imageSrc: "/cards/rare_2.webp", category: "Game Cards", subgroup: "Rare" },
+  { id: 12, title: "Bagyo", description: "A devastating storm card capturing the raw power of a Philippine typhoon.", meta: "Rare Card", imageSrc: "/cards/rare_bagyo.webp", category: "Game Cards", subgroup: "Rare" },
+  { id: 13, title: "Fly High Pasakay", description: "A rare transport card allowing players to soar across the board.", meta: "Rare Card", imageSrc: "/cards/rare_fly_high_pasakay.webp", category: "Game Cards", subgroup: "Rare" },
+  { id: 14, title: "Sa Kanto Lang Po", description: "A rare movement card with street-level Filipino urban culture aesthetics.", meta: "Rare Card", imageSrc: "/cards/rare_sa_kanto_lang_po.webp", category: "Game Cards", subgroup: "Rare" },
+  // Game Cards — Common
+  { id: 15, title: "Tumbang Person", description: "A common action card depicting a classic Filipino street game mechanic.", meta: "Common Card", imageSrc: "/cards/common_tumbang_person.webp", category: "Game Cards", subgroup: "Common" },
+  { id: 16, title: "Anting-Anting", description: "A protective amulet card inspired by Filipino folk beliefs in mystical charms.", meta: "Common Card", imageSrc: "/cards/common_anting_anting.webp", category: "Game Cards", subgroup: "Common" },
+  { id: 17, title: "Balikbayan Box", description: "A supply card representing the iconic Filipino care package from overseas.", meta: "Common Card", imageSrc: "/cards/common_balikbayan_box.webp", category: "Game Cards", subgroup: "Common" },
+  { id: 18, title: "Buwaya", description: "A common creature card featuring the Filipino crocodile with snapping jaws.", meta: "Common Card", imageSrc: "/cards/common_buwaya.webp", category: "Game Cards", subgroup: "Common" },
+  { id: 40, title: "Lechon", description: "A common card featuring the iconic Filipino roasted pig, a symbol of celebration and feasts.", meta: "Common Card", imageSrc: "/cards/common_lechon.webp", category: "Game Cards", subgroup: "Common" },
+  // Game Cards — Skill Cards
+  { id: 41, title: "Carabao — Skill 1", description: "First skill card for the Carabao character.", meta: "Skill Card", imageSrc: "/cards/skill_carabao_1.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 42, title: "Carabao — Skill 2", description: "Second skill card for the Carabao character.", meta: "Skill Card", imageSrc: "/cards/skill_carabao_2.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 43, title: "Carabao — Ultimate", description: "Ultimate ability card for the Carabao character.", meta: "Skill Card", imageSrc: "/cards/skill_carabao_ultimate.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 44, title: "Tarsier — Skill 1", description: "First skill card for the Tarsier character.", meta: "Skill Card", imageSrc: "/cards/skill_tarsier_1.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 45, title: "Tarsier — Skill 2", description: "Second skill card for the Tarsier character.", meta: "Skill Card", imageSrc: "/cards/skill_tarsier_2.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 46, title: "Tarsier — Ultimate", description: "Ultimate ability card for the Tarsier character.", meta: "Skill Card", imageSrc: "/cards/skill_tarsier_ultimate.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 47, title: "Whale — Swim", description: "First skill card for the Whale character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_whale_1.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 48, title: "Whale — Bubble Trap", description: "Second skill card for the Whale character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_whale_2.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 49, title: "Whale — Tidal Reversal", description: "Ultimate ability card for the Whale character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_whale_ultimate.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 50, title: "Eagle — Dive Forward", description: "First skill card for the Eagle character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_eagle_1.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 51, title: "Eagle — Gust of Wind", description: "Second skill card for the Eagle character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_eagle_2.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  { id: 52, title: "Eagle — Sky Soar", description: "Ultimate ability card for the Eagle character. Co-designed with teammate — contributed background illustration and art direction.", meta: "Skill Card • Co-designed", imageSrc: "/cards/skill_eagle_ultimate.webp", category: "Game Cards", subgroup: "Skill Cards" },
+  // Game Cards — Mystery
+  { id: 19, title: "3 Spaces Forward", description: "An advantage mystery card that moves the player forward.", meta: "Mystery • Advantage", imageSrc: "/cards/mystery_advantage_3_spaces_forward.webp", category: "Game Cards", subgroup: "Mystery" },
+  { id: 20, title: "Get Common Card", description: "An advantage mystery card that grants a free common card.", meta: "Mystery • Advantage", imageSrc: "/cards/mystery_advantage_get_common.webp", category: "Game Cards", subgroup: "Mystery" },
+  { id: 21, title: "Get Rare Card", description: "An advantage mystery card that grants a free rare card.", meta: "Mystery • Advantage", imageSrc: "/cards/mystery_advantage_get_rare.webp", category: "Game Cards", subgroup: "Mystery" },
+  { id: 22, title: "+1 Card", description: "An advantage mystery card that gives an extra card draw.", meta: "Mystery • Advantage", imageSrc: "/cards/mystery_advantage_plus1.webp", category: "Game Cards", subgroup: "Mystery" },
+  { id: 23, title: "3 Spaces Back", description: "A disadvantage mystery card that moves the player backward.", meta: "Mystery • Disadvantage", imageSrc: "/cards/mystery_disadvantage_3_spaces_back.webp", category: "Game Cards", subgroup: "Mystery" },
+  { id: 24, title: "Can't Use Powerup", description: "A disadvantage mystery card that blocks powerup usage for a turn.", meta: "Mystery • Disadvantage", imageSrc: "/cards/mystery_disadvantage_cant_use_powerup.webp", category: "Game Cards", subgroup: "Mystery" },
+  { id: 25, title: "Lose Powerup", description: "A disadvantage mystery card that removes a held powerup.", meta: "Mystery • Disadvantage", imageSrc: "/cards/mystery_disadvantage_lose_powerup.webp", category: "Game Cards", subgroup: "Mystery" },
+  { id: 26, title: "-1 Card", description: "A disadvantage mystery card that forces discarding a card.", meta: "Mystery • Disadvantage", imageSrc: "/cards/mystery_disadvantage_minus1.webp", category: "Game Cards", subgroup: "Mystery" },
   { id: 9, title: "Gora Na Explorer", description: "A brand identity for Gora Na Explorer, combining adventure-inspired typography with nature-themed visual elements.", meta: "Logo Design", imageSrc: "/logos/LOGO_gora_na_explorer.webp", category: "Logos" },
   { id: 10, title: "MathPulse AI", description: "A modern tech logo for MathPulse AI, featuring geometric precision and vibrant gradients that convey intelligence and innovation.", meta: "Logo Design", imageSrc: "/logos/LOGO_mathpulse_ai.webp", category: "Logos" },
   { id: 38, title: "Friize", description: "A playful and refreshing logo for the Friize beverage brand, capturing the essence of fruity frozen drinks.", meta: "Logo Design", imageSrc: "/logo_friize.png", category: "Logos" },
@@ -230,29 +267,55 @@ export function WorksPage() {
                         <img src={CATEGORY_INFO[cat.name]?.image} alt={cat.name} className="h-12 md:h-16 object-contain -rotate-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
                         <p className="text-muted-foreground text-sm mt-2">{CATEGORY_INFO[cat.name]?.description}</p>
                       </div>
-                      <div className={`gap-3 md:gap-4 ${items.length <= 2 ? "columns-2" : items.length <= 4 ? "columns-2 sm:columns-3 md:columns-4" : "columns-2 sm:columns-3 md:columns-5"}`}>
-                        {items.map((item) => {
-                          const globalIndex = filtered.findIndex(f => f.id === item.id);
-                          return (
-                            <motion.div key={item.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} onClick={() => handleGridClick(globalIndex)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; e.currentTarget.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.03)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)"; }} className="group relative rounded-xl overflow-hidden cursor-pointer transition-[box-shadow] duration-300 hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)] mb-3 md:mb-4 break-inside-avoid" style={{ transition: "transform 0.2s ease-out, box-shadow 0.3s ease" }}>
-                              {item.videoSrc ? (
-                                <div className="w-full aspect-video rounded-xl overflow-hidden"><iframe src={item.videoSrc} className="w-full h-full" allowFullScreen /></div>
-                              ) : (
-                                <img src={item.imageSrc} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
-                              )}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3"><div><p className="text-white font-bold text-sm">{item.title}</p><p className="text-white/60 text-xs">{item.meta}</p></div></div>
-                            </motion.div>
-                          );
-                        })}
-                      </div>
+                      {(() => {
+                        const subgroups = [...new Set(items.map(i => i.subgroup).filter(Boolean))];
+                        if (subgroups.length > 0) {
+                          return subgroups.map(sg => {
+                            const sgItems = items.filter(i => i.subgroup === sg);
+                            return (
+                              <div key={sg} className="mb-6">
+                                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">{sg}</p>
+                                <div className={`gap-3 md:gap-4 grid grid-cols-2 sm:grid-cols-3 ${sgItems.length <= 4 ? "md:grid-cols-4" : "md:grid-cols-5"}`}>
+                                  {sgItems.map((item) => {
+                                    const globalIndex = filtered.findIndex(f => f.id === item.id);
+                                    return (
+                                      <motion.div key={item.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} onClick={() => handleGridClick(globalIndex)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; e.currentTarget.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.03)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)"; }} className="group relative rounded-xl overflow-hidden cursor-pointer transition-[box-shadow] duration-300 hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)]" style={{ transition: "transform 0.2s ease-out, box-shadow 0.3s ease" }}>
+                                        <img src={item.imageSrc} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3"><div><p className="text-white font-bold text-sm">{item.title}</p><p className="text-white/60 text-xs">{item.meta}</p></div></div>
+                                      </motion.div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            );
+                          });
+                        }
+                        return (
+                          <div className={`gap-3 md:gap-4 ${items.length <= 2 ? "grid grid-cols-2" : items.length <= 4 ? "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4" : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5"}`}>
+                            {items.map((item) => {
+                              const globalIndex = filtered.findIndex(f => f.id === item.id);
+                              return (
+                                <motion.div key={item.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} onClick={() => handleGridClick(globalIndex)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; e.currentTarget.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.03)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)"; }} className="group relative rounded-xl overflow-hidden cursor-pointer transition-[box-shadow] duration-300 hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)]" style={{ transition: "transform 0.2s ease-out, box-shadow 0.3s ease" }}>
+                                  {item.videoSrc ? (
+                                    <div className="w-full aspect-video rounded-xl overflow-hidden"><iframe src={item.videoSrc} className="w-full h-full" allowFullScreen /></div>
+                                  ) : (
+                                    <img src={item.imageSrc} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
+                                  )}
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3"><div><p className="text-white font-bold text-sm">{item.title}</p><p className="text-white/60 text-xs">{item.meta}</p></div></div>
+                                </motion.div>
+                              );
+                            })}
+                          </div>
+                        );
+                      })()}
                     </div>
                   );
                 })}
               </div>
             ) : (
-              <div className="columns-2 sm:columns-3 md:columns-5 gap-3 md:gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
                 {filtered.map((item, index) => (
-                  <motion.div key={item.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }} onClick={() => handleGridClick(index)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; e.currentTarget.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.03)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)"; }} className="group relative rounded-xl overflow-hidden cursor-pointer transition-[box-shadow] duration-300 hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)] mb-3 md:mb-4 break-inside-avoid" style={{ transition: "transform 0.2s ease-out, box-shadow 0.3s ease" }}>
+                  <motion.div key={item.id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }} onClick={() => handleGridClick(index)} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left) / rect.width - 0.5; const y = (e.clientY - rect.top) / rect.height - 0.5; e.currentTarget.style.transform = `perspective(600px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.03)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = "perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)"; }} className="group relative rounded-xl overflow-hidden cursor-pointer transition-[box-shadow] duration-300 hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)] mb-3 md:mb-4" style={{ transition: "transform 0.2s ease-out, box-shadow 0.3s ease" }}>
                     {item.videoSrc ? (
                       <div className="w-full aspect-video rounded-xl overflow-hidden"><iframe src={item.videoSrc} className="w-full h-full" allowFullScreen /></div>
                     ) : (
