@@ -87,6 +87,7 @@ const WORKS: WorkItem[] = [
   { id: 35, title: "Friize — Lime", description: "Lime flavor variant featuring cool green tones and refreshing visual language.", meta: "Product Design", imageSrc: "/lime_friize.png", category: "Concept Design" },
   { id: 36, title: "Friize — Orange", description: "Orange flavor variant with warm citrus colors and energetic design.", meta: "Product Design", imageSrc: "/orange_friize.png", category: "Concept Design" },
   { id: 37, title: "Friize — Product Mockup", description: "A complete product mockup showcasing all four Friize flavor variants together in a realistic presentation.", meta: "Product Mockup", imageSrc: "/product_mockup.png", category: "Concept Design" },
+  { id: 53, title: "Art Community App — Wireframe", description: "A UI wireframe for a social platform blending Pinterest and Instagram, designed for artists to grow their community, share creativity, find inspiration, and connect with creators worldwide.", meta: "App Wireframe", imageSrc: "/wireframe_art_app.png", category: "Concept Design" },
 ];
 
 const CATEGORIES_ORDER = ["All", "Game Cards", "Logos", "Maps", "Posters", "Motion & Story", "Concept Design"];
