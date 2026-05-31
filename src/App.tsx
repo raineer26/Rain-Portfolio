@@ -1,5 +1,5 @@
-import { useState, useCallback, useRef } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, useCallback, useRef, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { BackToTop } from "@/components/ui/back-to-top";
@@ -10,6 +10,12 @@ import { CinematicFooter } from "@/components/ui/motion-footer";
 import { IntroAnimation } from "@/components/ui/intro-animation";
 import { WorksPreview } from "@/components/ui/works-preview";
 import { WorksPage } from "@/pages/works";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
 
 function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -62,6 +68,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       {/* Intro only plays once, lives outside Routes */}
       {!introComplete && <IntroAnimation onComplete={handleIntroComplete} />}
 

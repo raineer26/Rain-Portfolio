@@ -148,7 +148,7 @@ export function WorksPreview() {
                 <img src="/cards/rare_1.webp" alt="" className="absolute hidden md:block w-32 md:w-44 rounded-lg opacity-30 rotate-[10deg] translate-x-[40%] translate-y-[-10%] z-0" />
                 <img src="/cards/eagle_CARD.webp" alt="" className="absolute hidden md:block w-28 md:w-36 rounded-lg opacity-25 rotate-[20deg] translate-x-[20%] translate-y-[30%] z-0" />
                 <motion.img
-                  src="/preview_game.png"
+                  src="/preview_game.webp"
                   alt="Siren illustration"
                   className="relative z-10 h-[40vh] md:h-[55vh] max-h-[400px] object-contain drop-shadow-[0_20px_60px_rgba(100,50,200,0.3)] cursor-pointer animate-[float_4s_ease-in-out_infinite]"
                   initial={{ y: 30, opacity: 0 }}

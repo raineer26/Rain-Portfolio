@@ -385,7 +385,7 @@ export function CinematicFooter() {
               <div className="hidden md:flex relative items-center justify-center">
                 <div ref={photoRef} className="relative w-full max-w-[350px] lg:max-w-[450px] aspect-[4/5]">
                   <img
-                    src="/hero_photo.png"
+                    src="/hero_photo.webp"
                     alt="Rain — Art of Rain"
                     className="w-full h-full object-contain drop-shadow-2xl"
                   />

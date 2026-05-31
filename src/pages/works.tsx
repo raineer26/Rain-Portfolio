@@ -82,12 +82,12 @@ const WORKS: WorkItem[] = [
   { id: 31, title: "Bayanihan Comic", description: "A comic-style illustration depicting the Filipino spirit of Bayanihan — community and togetherness.", meta: "Comic Art", imageSrc: "/bayanihan_comic.webp", category: "Motion & Story" },
   { id: 31, title: "Crafted by Print Habit — Moodboard", description: "A visual moodboard defining the brand direction for Crafted by Print Habit's souvenir business.", meta: "Moodboard", imageSrc: "/moodboard_crafted_by.webp", category: "Concept Design" },
   { id: 32, title: "Art of Rain — Moodboard", description: "An early moodboard exploring the visual identity and aesthetic direction for the Art of Rain brand.", meta: "Moodboard", imageSrc: "/moodboard_old_ver_art_of_rain.png", category: "Concept Design" },
-  { id: 33, title: "Friize — Grape", description: "Grape flavor variant of the Friize product line, featuring vibrant purple tones and fresh fruit imagery.", meta: "Product Design", imageSrc: "/grape_friize.png", category: "Concept Design" },
-  { id: 34, title: "Friize — Lemon", description: "Lemon flavor variant with zesty yellow accents and citrus-inspired design elements.", meta: "Product Design", imageSrc: "/lemon_friize.png", category: "Concept Design" },
-  { id: 35, title: "Friize — Lime", description: "Lime flavor variant featuring cool green tones and refreshing visual language.", meta: "Product Design", imageSrc: "/lime_friize.png", category: "Concept Design" },
-  { id: 36, title: "Friize — Orange", description: "Orange flavor variant with warm citrus colors and energetic design.", meta: "Product Design", imageSrc: "/orange_friize.png", category: "Concept Design" },
-  { id: 37, title: "Friize — Product Mockup", description: "A complete product mockup showcasing all four Friize flavor variants together in a realistic presentation.", meta: "Product Mockup", imageSrc: "/product_mockup.png", category: "Concept Design" },
-  { id: 53, title: "Art Community App — Wireframe", description: "A UI wireframe for a social platform blending Pinterest and Instagram, designed for artists to grow their community, share creativity, find inspiration, and connect with creators worldwide.", meta: "App Wireframe", imageSrc: "/wireframe_art_app.png", category: "Concept Design" },
+  { id: 33, title: "Friize — Grape", description: "Grape flavor variant of the Friize product line, featuring vibrant purple tones and fresh fruit imagery.", meta: "Product Design", imageSrc: "/grape_friize.webp", category: "Concept Design" },
+  { id: 34, title: "Friize — Lemon", description: "Lemon flavor variant with zesty yellow accents and citrus-inspired design elements.", meta: "Product Design", imageSrc: "/lemon_friize.webp", category: "Concept Design" },
+  { id: 35, title: "Friize — Lime", description: "Lime flavor variant featuring cool green tones and refreshing visual language.", meta: "Product Design", imageSrc: "/lime_friize.webp", category: "Concept Design" },
+  { id: 36, title: "Friize — Orange", description: "Orange flavor variant with warm citrus colors and energetic design.", meta: "Product Design", imageSrc: "/orange_friize.webp", category: "Concept Design" },
+  { id: 37, title: "Friize — Product Mockup", description: "A complete product mockup showcasing all four Friize flavor variants together in a realistic presentation.", meta: "Product Mockup", imageSrc: "/product_mockup.webp", category: "Concept Design" },
+  { id: 53, title: "Chroma Ignite — App Wireframe", description: "A UI wireframe for Chroma Ignite, a social platform designed for artists to grow their community, share creativity, find inspiration, and connect with creators worldwide.", meta: "App Wireframe", imageSrc: "/wireframe_art_app.webp", category: "Concept Design" },
 ];
 
 const CATEGORIES_ORDER = ["All", "Game Cards", "Logos", "Maps", "Posters", "Motion & Story", "Concept Design"];
@@ -106,9 +106,8 @@ export function WorksPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [filterOpen, setFilterOpen] = useState(false);
+  const [showTraditional, setShowTraditional] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   // Dynamic categories derived from data
   const categories = useMemo(() => {
@@ -164,18 +163,42 @@ export function WorksPage() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => view === "detail" ? setView("grid") : navigate(-1)}
+              onClick={() => showTraditional ? setShowTraditional(false) : view === "detail" ? setView("grid") : navigate(-1)}
               className="p-2 rounded-full bg-muted/50 border border-border/50 hover:bg-muted transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-5 h-5" />
             </motion.button>
 
             <div className="flex items-center gap-2">
+              {/* Traditional art toggle */}
+              <div className="relative group">
+                <motion.button
+                  whileHover={{ scale: 1.15, rotate: 10 }}
+                  whileTap={{ scale: 0.9 }}
+                  animate={!showTraditional ? { boxShadow: ["0 0 0px rgba(120,80,200,0)", "0 0 15px rgba(120,80,200,0.6)", "0 0 0px rgba(120,80,200,0)"] } : {}}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                  onClick={() => setShowTraditional(!showTraditional)}
+                  className={`w-10 h-10 rounded-full cursor-pointer ${showTraditional ? "shadow-[0_0_12px_rgba(120,80,200,0.4)]" : ""}`}
+                >
+                  <img src="/web_logo.png" alt="" className="w-10 h-10 rounded-full" />
+                </motion.button>
+                <motion.div
+                  initial={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 0, y: 5 }}
+                  transition={{ delay: 3, duration: 0.4 }}
+                  className="absolute right-0 top-full mt-2 pointer-events-none z-30 group-hover:!opacity-100 group-hover:!translate-y-0 transition-all duration-200"
+                >
+                  <div className="bg-white text-black text-xs font-bold px-3 py-2 rounded-xl shadow-lg whitespace-nowrap">
+                    {showTraditional ? "Back to Digital Works!" : "Wanna see my traditional artworks too? Click me!"}
+                  </div>
+                </motion.div>
+              </div>
+
               {/* Filter dropdown */}
-              <div className="relative">
+              <div className={`relative ${showTraditional ? "hidden" : ""}`}>
                 <button
                   onClick={() => setFilterOpen(!filterOpen)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted/30 border border-border/30 text-sm font-semibold cursor-pointer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/15 text-sm font-semibold cursor-pointer hover:bg-white/10 hover:border-white/25 transition-all shadow-[0_2px_10px_rgba(0,0,0,0.2)]"
                 >
                   <span>{activeCategory} ({categories.find(c => c.name === activeCategory)?.count})</span>
                   <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${filterOpen ? "rotate-180" : ""}`} />
@@ -205,7 +228,7 @@ export function WorksPage() {
               </div>
 
               {/* View toggle */}
-              <div className="flex items-center gap-1 rounded-full bg-muted/30 p-1 border border-border/30">
+              <div className={`flex items-center gap-1 rounded-full bg-white/5 p-1 border border-white/15 shadow-[0_2px_10px_rgba(0,0,0,0.2)] ${showTraditional ? "hidden" : ""}`}>
                 {([["grid", Grid3X3], ["detail", Layers]] as const).map(([key, Icon]) => (
                   <motion.button
                     key={key}
@@ -229,7 +252,7 @@ export function WorksPage() {
           </div>
 
           {/* Centered title — dynamic in detail view */}
-          <div className="text-center mb-4">
+          {!showTraditional && <div className="text-center mb-4">
             {view === "detail" && activeCategory !== "All" && CATEGORY_INFO[activeCategory] ? (
               <>
                 <img src={CATEGORY_INFO[activeCategory].image} alt={activeCategory} className="h-12 md:h-16 object-contain mx-auto -rotate-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
@@ -246,10 +269,40 @@ export function WorksPage() {
                 <p className="text-muted-foreground text-sm md:text-base mt-3 max-w-lg mx-auto">Full collection of illustrations, designs, and visual projects.</p>
               </>
             )}
-          </div>
+          </div>}
         </div>
         {/* Views */}
-        {view === "grid" ? (
+        {showTraditional ? (
+          <div>
+            <div className="text-center mb-6">
+              <img src="/traditional_art.png" alt="Traditional Art" className="h-12 md:h-16 object-contain mx-auto -rotate-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
+              <p className="text-muted-foreground text-sm mt-2">Pencil, ink, and paint — artworks created by hand.</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+              {[
+                { src: "/traditional_art_header.webp", title: "Traditional Portrait" },
+                { src: "/traditional_1.webp", title: "Artwork 1" },
+                { src: "/traditional_2.webp", title: "Artwork 2" },
+                { src: "/traditional_3.webp", title: "Artwork 3" },
+                { src: "/traditional_4.webp", title: "Artwork 4" },
+                { src: "/traditional_5.webp", title: "Artwork 5" },
+                { src: "/traditional_6.webp", title: "Artwork 6" },
+                { src: "/traditional_7.webp", title: "Artwork 7" },
+                { src: "/traditional_8.webp", title: "Artwork 8" },
+                { src: "/traditional_9.webp", title: "Artwork 9" },
+                { src: "/traditional_eyes.webp", title: "Eyes Study" },
+              ].map((item, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: i * 0.03 }} className="group relative rounded-xl overflow-hidden cursor-pointer hover:shadow-[0_0_40px_-5px_rgba(120,80,200,0.3)] transition-shadow">
+                  <img src={item.src} alt={item.title} className="w-full h-auto object-cover rounded-xl" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                    <p className="text-white font-bold text-sm">{item.title}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ) : (
+        view === "grid" ? (
           <div>
             {activeCategory !== "All" && (
               <div className="mb-4">
@@ -329,7 +382,7 @@ export function WorksPage() {
           </div>
         ) : (
           <FocusRail items={filtered} initialIndex={selectedIndex} onActiveChange={setSelectedIndex} />
-        )}
+        ))}
       </div>
       <BackToTop />
     </div>
