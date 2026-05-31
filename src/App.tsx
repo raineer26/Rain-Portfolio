@@ -188,8 +188,8 @@ function App() {
                       Have a project in mind or looking for a creative intern? I'd love to hear from you.
                     </p>
                     <div className="flex items-center gap-6">
-                      {[{ name: "GitHub", url: "https://github.com/raineer26" }, { name: "LinkedIn", url: "https://linkedin.com/" }, { name: "Resume", url: "/Rosado_Resume.pdf" }].map((platform) => (
-                        <a key={platform.name} href={platform.url} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground/40 hover:text-foreground transition-colors" title={platform.name === "LinkedIn" ? "LinkedIn profile coming soon!" : undefined}>
+                      {[{ name: "GitHub", url: "https://github.com/raineer26" }, { name: "LinkedIn", url: "https://www.linkedin.com/in/raineer-rosado-390a1b412" }, { name: "Resume", url: "/Rosado_Resume.pdf" }].map((platform) => (
+                        <a key={platform.name} href={platform.url} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground/40 hover:text-foreground transition-colors">
                           {platform.name}
                         </a>
                       ))}
