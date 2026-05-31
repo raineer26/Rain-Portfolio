@@ -1,8 +1,8 @@
 # Art of Rain — Personal Portfolio
 
-A creative portfolio website built for OJT internship applications, showcasing digital illustrations, logo designs, game card art, web development projects, and more.
+A creative portfolio website showcasing digital illustrations, game card art, logo designs, storyboards, product designs, and web development projects. Features cinematic intro animations, interactive scroll-driven previews, a masonry gallery with detail view, and responsive design with playful micro-interactions throughout.
 
-**Live Site:** [Coming Soon]
+**Live Site:** [rain-portfolio.vercel.app](https://rain-portfolio.vercel.app)
 
 ---
 
@@ -11,88 +11,82 @@ A creative portfolio website built for OJT internship applications, showcasing d
 - **Framework:** React 18 (via Vite)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
-- **Animations:** Framer Motion + GSAP (ScrollTrigger, Flip)
+- **Animations:** Framer Motion + GSAP (ScrollTrigger)
 - **Routing:** React Router DOM
-- **UI Primitives:** Radix UI (Tabs, Toggle, Toggle Group, Slot)
+- **UI Primitives:** Radix UI (Tabs)
 - **Icons:** Lucide React
+- **Email:** EmailJS
 - **Utilities:** clsx, tailwind-merge, class-variance-authority
+- **Deployment:** Vercel
 
 ---
 
 ## Features
 
 ### Intro Animation
-- Grid pixelate-wipe transition between two scenes using Framer Motion
-- Floating character icons in the background with breathing opacity and scale animations
-- Auto-fades out to reveal the main content
+- Grid pixelate-wipe transition between two scenes
+- "Welcome to" text slides in, then Art of Rain logo pops up with spring bounce
+- Floating character icons in background
+- Auto-fades out to reveal main content
 
-### Hero Section (CinematicFooter)
-- "Art of Rain" heading with metallic text glow effect
-- Scrolling marquee with skills (UI/UX Design, Digital Illustrations, Logo Design, etc.)
+### Hero Section
+- Stylized "Art of Rain" logo image with tilt hover effect
+- Scrolling marquee with skills
 - Giant "RAIN" background text
-- Floating hero photo with GSAP-powered bob animation
-- Glass-morphism CTA buttons (Contact Me, View Resume)
+- Floating hero photo with bob animation
+- Glass-morphism CTA buttons (Contact Me scrolls to contact, View Resume opens PDF)
 - Social links (GitHub, LinkedIn, Behance)
-- Copyright footer
 
 ### Navigation
-- **SlideTabs Navbar** — Floating pill-style navbar with animated cursor that slides between tabs (desktop)
-- **Hamburger Menu** — Full-screen overlay with dramatic text entrance animation (slide up + rotation), background sweep hover effect on links (mobile)
-- Scroll-spy: auto-highlights the active section as you scroll
-- Glass design with backdrop blur
-- **Scroll Logo** — Rain logo fixed top-left, rotates counter-clockwise on scroll down, clockwise on scroll up, click to go home
-- **Back to Top** — Floating button (bottom-right), appears after scrolling 300px, hover/tap scale animation
+- **Desktop:** Glass pill navbar with animated cursor, marker highlight per tab
+- **Mobile:** Hamburger menu with text-roll hover effect (letter stagger animation)
+- Scroll-spy auto-highlights active section
+- Dynamic speech bubble on logo hover (changes message per section)
+- Logo rotates on scroll
 
-### Featured Projects Section
-- Tabbed interface (Souvenir Business, Barangay System, MathPulse AI, Art Gallery)
-- **Desktop:** Animated sliding pill tabs with layoutId spring animation
-- **Mobile:** Dropdown selector with chevron, animated expand/collapse
-- Live iframe previews rendered at 1280px desktop width, scaled down with CSS transform
-- Mini browser frame (traffic lights, URL bar, loading spinner)
-- Radial gradient glows and subtle shape decorations in background
-- "Visit Site" button per project
-- Scroll-triggered reveal animations
+### Featured Projects (6 projects)
+- Souvenir Business, Barangay System, MathPulse AI, V-Serve, CineSense
+- Each with role, description, and tech stack pills
+- **Desktop:** Animated sliding pill tabs
+- **Mobile:** Dropdown selector
+- Live iframe previews scaled to fit
+- Mini browser frame (traffic lights, URL bar)
 
-### Works Preview (Story Scroll)
-- GSAP-powered pinned scroll sections with rotation transitions
+### Creative Works Preview
 - 3 sections: Game Art, Brand & Print, Gallery CTA
-- **Slideshow backgrounds** — crossfading images from each category every 4 seconds with AnimatePresence
-- **Floating preview images** — CSS float animation (bob up/down) + hover scale/rotate effect
-- Grid texture + radial glow backgrounds matching site-wide design language
-- Section 3 uses PortfolioGallery — 3D fanned/overlapping card layout with hover interactions
-- "View All Works" button navigates to dedicated works page
+- Slideshow backgrounds cycling every 4s with crossfade
+- Floating preview images with hover effects
+- Fanned cards behind main preview images (desktop)
+- Scroll-linked progress bar with custom star icon
+- Section 2 flipped layout (image left, text right)
 
 ### Dedicated Works Page (`/works`)
-- **Masonry Grid View:** CSS columns layout (5 → 4 → 3 → 2), natural image heights, tilt hover with 3D perspective, staggered entrance, rounded corners
-- **Detail View (FocusRail):** Two-column layout with carousel left, info right, blurred ambient background
-- **Dynamic filter** — auto-derived from data with item counts, animated sliding pill (desktop), dropdown selector (mobile)
-- **View toggle** — animated sliding pill with layoutId, icon-only on mobile
-- Rich background: grid texture, radial glows (purple/blue), noise overlay, floating shapes
-- Full-page blurred artwork background in detail mode
-- Back button with hover/tap animation, preserves scroll position on main page
+- **37 works** across 6 categories: Game Cards, Logos, Maps, Posters, Motion & Story, Concept Design
+- **Grid view:** Masonry layout, dynamic columns per category, stylized header images per section
+- **Detail view:** Carousel with zoom-on-click, dynamic category header updates on swipe
+- YouTube video embed (autoplay muted) in Motion & Story
+- Dropdown filter + icon-only view toggle
+- Back button: detail → grid → home
 
-### Responsive Design
-- All sections adapt to viewport size using relative units (vh, vw, vmin, clamp)
-- Mobile-first approach with progressive enhancement
-- **Hamburger menu** on mobile with full-screen overlay
-- **Dropdown selectors** replace pill tabs on mobile (Featured Projects, Works filter)
-- **Icon-only view toggle** on mobile
-- Reduced image sizes and card dimensions on mobile
-- Photo hidden on mobile in hero section, centered text instead
-- Touch-friendly interactions throughout
+### About Section
+- Two-column layout: bio left, bento tools grid right
+- Highlighted key phrases in primary color
+- **Creative Suite:** 6 tool icons (Figma, Krita, IbisPaint, Canva, Photoshop, Illustrator) with magnetic hover + floating animation
+- **Dev Stack & Collaboration:** Pill badges with hover effects
+- Speech bubble "Current Quest" with typewriter effect and animated rain logo
 
-### Performance
-- WebP images (150–230KB each)
-- WAAPI-backed animations where possible (transform, opacity)
-- No unnecessary dependencies
-- Scroll-triggered animations use `once: true` to avoid re-triggering
+### Contact Section
+- Two-column: text left, form right
+- **Working EmailJS contact form** (name, email, message → sends to Gmail)
+- Social links (GitHub, LinkedIn, Resume)
+- Status feedback on send
 
-### Consistent Animations
-- All interactive buttons use `whileHover: scale 1.05` / `whileTap: scale 0.95` (spring physics)
-- Navbar tabs have `whileTap: scale 0.92` for click feedback
-- View All Works button has hover scale + tap shrink
-- Back-to-top button has hover/tap scale
-- Animated sliding pills (layoutId) on all tab/filter interfaces
+### Consistent Design Language
+- Stylized header images with tilt + glow hover effects
+- Glass/backdrop-blur containers
+- Radial glows + grid texture + halftone dot overlay
+- Warm dark theme with purple/blue accents
+- Plus Jakarta Sans font
 
 ---
 
@@ -100,53 +94,38 @@ A creative portfolio website built for OJT internship applications, showcasing d
 
 ```
 src/
-├── components/
-│   └── ui/
-│       ├── back-to-top.tsx          # Floating back-to-top button (hover/tap animations)
-│       ├── badge.tsx                # shadcn Badge component
-│       ├── button.tsx               # shadcn Button component
-│       ├── feature-projects.tsx     # Featured Projects section (dropdown mobile, pill tabs desktop)
-│       ├── flip-reveal.tsx          # GSAP Flip animation for filtering
-│       ├── focus-rail.tsx           # 3D carousel detail view
-│       ├── intro-animation.tsx      # Grid pixelate-wipe intro
-│       ├── motion-footer.tsx        # Hero/CinematicFooter section
-│       ├── portfolio-gallery.tsx    # 3D fanned card gallery (cardsOnly mode)
-│       ├── reveal.tsx               # Scroll-triggered reveal wrapper
-│       ├── scroll-logo.tsx          # Rotating logo on scroll
-│       ├── scroll-tilted-grid.tsx   # Editorial tilt grid
-│       ├── slide-tabs-navbar.tsx    # Animated pill navbar + hamburger menu
-│       ├── story-scroll.tsx         # GSAP pinned scroll sections
-│       └── works-preview.tsx        # Works preview with slideshow backgrounds
-├── lib/
-│   └── utils.ts                     # cn() helper (clsx + tailwind-merge)
+├── components/ui/
+│   ├── back-to-top.tsx
+│   ├── badge.tsx
+│   ├── button.tsx
+│   ├── feature-projects.tsx
+│   ├── focus-rail.tsx
+│   ├── intro-animation.tsx
+│   ├── motion-footer.tsx
+│   ├── portfolio-gallery.tsx
+│   ├── reveal.tsx
+│   ├── scroll-logo.tsx
+│   ├── slide-tabs-navbar.tsx
+│   ├── story-scroll.tsx
+│   └── works-preview.tsx
 ├── pages/
-│   └── works.tsx                    # Dedicated works gallery page (masonry + detail)
-├── App.tsx                          # Main app with routing
-├── main.tsx                         # Entry point
-└── index.css                        # Tailwind + CSS variables + float keyframe + scrollbar-hide
+│   └── works.tsx
+├── lib/utils.ts
+├── App.tsx
+├── main.tsx
+└── index.css
 
 public/
-├── cards/                           # Game card illustrations
-│   ├── mythical_1.webp              # Manananggal
-│   ├── mythical_2.webp              # Aswang
-│   ├── rare_1.webp                  # Mount Uwe
-│   ├── rare_2.webp                  # Kulam
-│   ├── whale_CARD.webp              # Whale
-│   ├── carabao_CARD.webp            # Carabao
-│   ├── eagle_CARD.webp              # Eagle
-│   └── tarsier_CARD.webp            # Tarsier
-├── logos/                           # Logo designs
-│   ├── LOGO_gora_na_explorer.webp   # Gora Na Explorer brand
-│   └── LOGO_mathpulse_ai.webp      # MathPulse AI brand
-├── maps/                            # Map illustrations
-│   └── MAP_gora_na_explorer.webp   # Gora Na Explorer map
-├── rain_logo.png                    # Logo/favicon
-├── hero_photo.png                   # Hero section photo
-├── preview_game.png                 # Siren illustration for works preview
-├── cute-icon-1.png                  # Floating icon (drawing)
-└── cute-icon-2.png                  # Floating icon (laptop)
-
-vercel.json                          # SPA rewrite rules for deployment
+├── cards/ (8 game card illustrations)
+├── logos/ (2 logo designs)
+├── maps/ (1 map)
+├── Stylized headers (art_of_rain, featured_projects, creative_works, about_me, contact_me, game_cards, logo_designs, game_map, posters, motion_story, concept_design)
+├── Tool icons (figma, krita, ibispaint, canva, photoshop, illustrator)
+├── Storyboards (1-12)
+├── Posters, moodboards, product designs
+├── web_logo.png, hero_photo.png, preview_game.png
+├── progress_bar_icon.png
+└── Rosado_Resume.pdf
 ```
 
 ---
@@ -154,13 +133,8 @@ vercel.json                          # SPA rewrite rules for deployment
 ## Getting Started
 
 ```bash
-# Install dependencies
 npm install
-
-# Start dev server
 npm run dev
-
-# Build for production
 npm run build
 ```
 
@@ -168,28 +142,7 @@ npm run build
 
 ## Deployment
 
-The project is configured for Vercel deployment with `vercel.json` handling SPA routing.
-
-```bash
-# Deploy via CLI
-npx vercel
-
-# Or connect GitHub repo at vercel.com/new
-```
-
----
-
-## Color Palette (Dark Theme)
-
-| Token | Value | Description |
-|-------|-------|-------------|
-| Background | `oklch(0.145 0 0)` | Near-black |
-| Foreground | `oklch(0.985 0 0)` | Near-white |
-| Primary | `oklch(0.785 0.115 274)` | Purple/violet accent |
-| Secondary | `oklch(0.6 0.1 250)` | Blue-purple |
-| Muted Foreground | `oklch(0.556 0 0)` | Medium gray |
-| Border | `oklch(0.3 0 0)` | Dark gray |
-| Destructive | `oklch(0.577 0.245 27.325)` | Red |
+Configured for Vercel with `vercel.json` handling SPA routing.
 
 ---
 

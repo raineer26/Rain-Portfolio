@@ -14,6 +14,8 @@ interface Project {
   badge: string;
   title: string;
   description: string;
+  role: string;
+  tech: string[];
   url: string;
 }
 
@@ -25,7 +27,9 @@ const projects: Project[] = [
     badge: "Client Website",
     title: "Crafted by Print Habit",
     description:
-      "A fully designed and developed e-commerce website for a souvenir and printing business. Features product showcases, responsive layouts, and a clean modern UI.",
+      "A digital web platform and storefront client solution tailored for a keepsakes customization business. Co-designed high-fidelity wireframes and developed the semantic frontend user view.",
+    role: "UI/UX Designer & Frontend Developer",
+    tech: ["HTML5", "CSS3", "JavaScript"],
     url: "https://crafted-by-print-habit.vercel.app/",
   },
   {
@@ -33,9 +37,11 @@ const projects: Project[] = [
     icon: <School className="h-auto w-4 shrink-0" />,
     label: "Barangay System",
     badge: "Web Application",
-    title: "Barangay Equipment Borrowing & Scheduling",
+    title: "Barangay Equipment Borrowing & Tracking System",
     description:
-      "A community management system for Barangay Mapulang Lupa that handles equipment borrowing, scheduling, and user management with an intuitive interface.",
+      "A client-side multi-page web platform streamlining equipment booking and real-time inventory lifecycle tracking for Brgy. Mapulang Lupa. Architected the complete UI/UX wireframes and developed core front-end pages.",
+    role: "Scrum Master, UI/UX Designer & Developer",
+    tech: ["JavaScript", "HTML5", "CSS3", "Firebase"],
     url: "https://barangaymapulanglupa.vercel.app/user.html",
   },
   {
@@ -45,7 +51,9 @@ const projects: Project[] = [
     badge: "Capstone Project",
     title: "MathPulse AI — Intelligent Math Tutor",
     description:
-      "An AI-powered web application built as a capstone project. Helps students learn math through interactive problem-solving and intelligent feedback.",
+      "An AI-powered math tutoring platform featuring adaptive learning algorithms and student progress tracking. Co-led the design direction, created brand assets and user avatars, and built responsive frontend dashboards.",
+    role: "Design Lead & Frontend Developer",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Krita"],
     url: "https://deign86-mathpulse-ai.static.hf.space",
   },
   {
@@ -55,8 +63,22 @@ const projects: Project[] = [
     badge: "Web Application",
     title: "V-Serve — ARTA Feedback System",
     description:
-      "A feedback and service rating system built for government compliance with ARTA standards. Features real-time analytics and user-friendly survey interfaces.",
+      "An automated, ARTA-compliant customer feedback and analytics system for the City Government of Valenzuela. Designed the project moodboard, established the visual interface style guide, and created comprehensive UI wireframes.",
+    role: "UI/UX Designer",
+    tech: ["Figma", "UI Wireframes"],
     url: "https://v-serve-arta-feedback.vercel.app",
+  },
+  {
+    value: "cinesense",
+    icon: <Palette className="h-auto w-4 shrink-0" />,
+    label: "CineSense",
+    badge: "UI Design",
+    title: "CineSense — Movie Discovery Platform",
+    description:
+      "A movie discovery web app with a sleek, modern interface. Designed the UI to deliver an immersive browsing experience for film enthusiasts.",
+    role: "UI/UX Designer",
+    tech: ["Figma", "React", "Tailwind CSS"],
+    url: "https://cinesense-dusky.vercel.app/",
   },
 ];
 
@@ -213,6 +235,12 @@ export function FeaturedProjects() {
                   <p className="text-foreground/70 text-sm md:text-base leading-relaxed">
                     {project.description}
                   </p>
+                  <p className="text-xs text-primary/80 font-semibold mt-2">{project.role}</p>
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {project.tech.map((t) => (
+                      <span key={t} className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-white/5 border border-white/10 text-foreground/60">{t}</span>
+                    ))}
+                  </div>
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
                       className="mt-2 w-fit gap-2 bg-white text-black hover:bg-white/90 font-bold shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.5)] transition-shadow"

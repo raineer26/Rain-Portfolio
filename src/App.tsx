@@ -180,7 +180,7 @@ function App() {
                 <div className="grid md:grid-cols-2 gap-10 items-stretch">
                   {/* Left: Text */}
                   <div className="text-left">
-                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-4">Get In Touch</p>
+                    <img src="/contact_me.png" alt="Contact Me" className="h-8 md:h-10 object-contain mb-4 -rotate-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
                     <h2 className="text-[clamp(2.5rem,6vw,5rem)] font-black leading-[0.9] uppercase tracking-tight text-foreground mb-6">
                       Let's Work<br />Together
                     </h2>
