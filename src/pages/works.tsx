@@ -88,9 +88,13 @@ const WORKS: WorkItem[] = [
   { id: 36, title: "Friize — Orange", description: "Orange flavor variant with warm citrus colors and energetic design.", meta: "Product Design", imageSrc: "/orange_friize.webp", category: "Concept Design" },
   { id: 37, title: "Friize — Product Mockup", description: "A complete product mockup showcasing all four Friize flavor variants together in a realistic presentation.", meta: "Product Mockup", imageSrc: "/product_mockup.webp", category: "Concept Design" },
   { id: 53, title: "Chroma Ignite — App Wireframe", description: "A UI wireframe for Chroma Ignite, a social platform designed for artists to grow their community, share creativity, find inspiration, and connect with creators worldwide.", meta: "App Wireframe", imageSrc: "/wireframe_art_app.webp", category: "Concept Design" },
+  // 3D Models
+  { id: 54, title: "Room Interior", description: "A 3D interior room model created in 3ds Max as a game development course activity.", meta: "3D Model • 3ds Max", imageSrc: "/room_model.webp", category: "3D Models" },
+  { id: 55, title: "Ministop Store", description: "A 3D architectural model of a Ministop convenience store, built in 3ds Max.", meta: "3D Model • 3ds Max", imageSrc: "/ministop_model.webp", category: "3D Models" },
+  { id: 56, title: "Castle", description: "A 3D castle model with detailed architecture, created in 3ds Max for a game development subject.", meta: "3D Model • 3ds Max", imageSrc: "/castle_model.webp", category: "3D Models" },
 ];
 
-const CATEGORIES_ORDER = ["All", "Game Cards", "Logos", "Maps", "Posters", "Motion & Story", "Concept Design"];
+const CATEGORIES_ORDER = ["All", "Game Cards", "Logos", "Maps", "Posters", "Motion & Story", "Concept Design", "3D Models"];
 
 const CATEGORY_INFO: Record<string, { description: string; image: string }> = {
   "Game Cards": { description: "Mythical creatures, rare beasts, and legendary beings — illustrated for immersive tabletop card games.", image: "/game_cards.png" },
@@ -99,6 +103,7 @@ const CATEGORY_INFO: Record<string, { description: string; image: string }> = {
   "Posters": { description: "Vibrant promotional designs blending illustration with bold typography.", image: "/posters.png" },
   "Motion & Story": { description: "Storyboards, comics, and animation — visual narratives brought to life frame by frame.", image: "/motion_story.png" },
   "Concept Design": { description: "Moodboards, product designs, and visual explorations that shape creative direction.", image: "/concept_design.png" },
+  "3D Models": { description: "3D environment and architectural models created in 3ds Max for a game development course.", image: "/3d_models.png" },
 };
 
 export function WorksPage() {

@@ -111,7 +111,7 @@ function App() {
                       I'm an <span className="text-primary font-semibold">IT student</span> drawn to the <span className="text-primary font-semibold">creative side</span> of technology. I love exploring digital illustration, user interface design, and character concept art. For me, the most exciting part of any project is figuring out the visuals, the mood, and the storytelling elements that <span className="text-primary font-semibold">make an experience feel alive</span>.
                     </p>
                     <p className="text-foreground/50 text-sm leading-relaxed mb-6 pl-4 border-l-2 border-primary/30">
-                      While design is my focus, I also build responsive web interfaces with React and Tailwind CSS. Knowing code lets me bring my own designs straight to the screen.
+                      I also have some experience building simple web interfaces using React and Tailwind CSS — just enough to bring my own design concepts to life on screen.
                     </p>
                     {/* Current Quest speech bubble */}
                     <div className="flex items-start gap-3 mt-4">

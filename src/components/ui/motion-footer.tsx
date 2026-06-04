@@ -344,7 +344,7 @@ export function CinematicFooter() {
                     <img src="/art_of_rain.png" alt="Art of Rain" className="w-full max-w-sm sm:max-w-lg md:max-w-2xl -rotate-2 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]" />
                   </h2>
                   <p className="mt-3 text-muted-foreground text-sm sm:text-base max-w-md text-center md:text-left leading-relaxed">
-                    A creative designer and developer crafting digital illustrations, logos, and polished web experiences.
+                    Digital illustrator and visual designer — crafting characters, logos, and immersive creative experiences.
                   </p>
                 </div>
 
