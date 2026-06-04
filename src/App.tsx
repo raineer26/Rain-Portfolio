@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { ScrollLogo } from "@/components/ui/scroll-logo";
@@ -61,6 +61,7 @@ function TypewriterText({ text }: { text: string }) {
 
 function App() {
   const [introComplete, setIntroComplete] = useState(false);
+  const [aboutTab, setAboutTab] = useState<"tools" | "skills">("tools");
 
   const handleIntroComplete = useCallback(() => {
     setIntroComplete(true);
@@ -129,47 +130,90 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Right: Tools — Bento grid */}
+                  {/* Right: Tools / Skills toggle */}
                   <div className="flex flex-col gap-3 h-full">
-                    {/* Creative Suite — icons */}
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 flex-1 flex flex-col">
-                      <h3 className="text-xs font-bold uppercase tracking-widest text-foreground/50 mb-4">Creative Suite</h3>
-                      <div className="grid grid-cols-3 gap-3 flex-1 place-items-center">
-                        {[
-                          { name: "Figma", icon: "/figma_icon.png" },
-                          { name: "Krita", icon: "/krita_icon.png" },
-                          { name: "IbisPaint", icon: "/ibis_paint_icon.png" },
-                          { name: "Canva", icon: "/canva_icon.png" },
-                          { name: "Photoshop", icon: "/photoshop_icon.png" },
-                          { name: "Illustrator", icon: "/illustrator_icon.png" },
-                        ].map((tool, i) => (
-                          <div key={tool.name} className="group flex flex-col items-center cursor-pointer" style={{ transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)", animation: `float ${3 + (i % 3) * 0.5}s ease-in-out ${i * 0.2}s infinite` }} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left - rect.width / 2) * 0.4; const y = (e.clientY - rect.top - rect.height / 2) * 0.4; e.currentTarget.style.transform = `translate(${x}px, ${y}px) scale(1.15)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = ""; }}>
-                            <img src={tool.icon} alt={tool.name} className="w-14 h-14 md:w-20 md:h-20 object-contain group-hover:drop-shadow-[0_0_12px_rgba(120,80,200,0.6)] transition-all duration-300" />
-                            <span className="text-[11px] text-muted-foreground mt-1">{tool.name}</span>
-                          </div>
-                        ))}
-                      </div>
+                    {/* Toggle */}
+                    <div className="flex gap-1 p-1 rounded-full bg-white/5 border border-white/10 w-fit">
+                      {(["tools", "skills"] as const).map((tab) => (
+                        <button key={tab} onClick={() => setAboutTab(tab)} className="relative px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest cursor-pointer transition-colors z-10">
+                          {aboutTab === tab && <motion.span layoutId="about-tab" className="absolute inset-0 rounded-full bg-primary/30 border border-primary/50" transition={{ type: "spring", stiffness: 400, damping: 30 }} />}
+                          <span className={`relative z-10 ${aboutTab === tab ? "text-foreground" : "text-foreground/40"}`}>{tab}</span>
+                        </button>
+                      ))}
                     </div>
 
-                    {/* Bottom row: Dev Stack + Collaboration */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4">
-                        <h3 className="text-xs font-bold uppercase tracking-widest text-foreground/50 mb-2">Dev Stack</h3>
-                        <div className="flex flex-wrap gap-1.5">
-                          {["React", "Tailwind", "TypeScript", "HTML5", "CSS3", "JavaScript", "Vite"].map((tool) => (
-                            <span key={tool} className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 border border-white/10 text-foreground/70 hover:bg-primary/20 hover:border-primary/40 hover:text-foreground cursor-pointer transition-all duration-200">{tool}</span>
+                    <AnimatePresence mode="wait">
+                      {aboutTab === "tools" ? (
+                        <motion.div key="tools" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className="flex flex-col gap-3 flex-1">
+                          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 flex-1 flex flex-col">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-foreground/50 mb-4">Creative Suite</h3>
+                            <div className="grid grid-cols-3 gap-3 flex-1 place-items-center">
+                              {[
+                                { name: "Figma", icon: "/figma_icon.png" },
+                                { name: "Krita", icon: "/krita_icon.png" },
+                                { name: "IbisPaint", icon: "/ibis_paint_icon.png" },
+                                { name: "Canva", icon: "/canva_icon.png" },
+                                { name: "Photoshop", icon: "/photoshop_icon.png" },
+                                { name: "Illustrator", icon: "/illustrator_icon.png" },
+                              ].map((tool, i) => (
+                                <div key={tool.name} className="group flex flex-col items-center cursor-pointer" style={{ transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)", animation: `float ${3 + (i % 3) * 0.5}s ease-in-out ${i * 0.2}s infinite` }} onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); const x = (e.clientX - rect.left - rect.width / 2) * 0.4; const y = (e.clientY - rect.top - rect.height / 2) * 0.4; e.currentTarget.style.transform = `translate(${x}px, ${y}px) scale(1.15)`; }} onMouseLeave={(e) => { e.currentTarget.style.transform = ""; }}>
+                                  <img src={tool.icon} alt={tool.name} className="w-14 h-14 md:w-20 md:h-20 object-contain group-hover:drop-shadow-[0_0_12px_rgba(120,80,200,0.6)] transition-all duration-300" />
+                                  <span className="text-[11px] text-muted-foreground mt-1">{tool.name}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4">
+                              <h3 className="text-xs font-bold uppercase tracking-widest text-foreground/50 mb-2">Dev Stack</h3>
+                              <div className="flex flex-wrap gap-1.5">
+                                {["React", "Tailwind", "TypeScript", "HTML5", "CSS3", "JavaScript", "Vite"].map((tool) => (
+                                  <span key={tool} className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 border border-white/10 text-foreground/70 hover:bg-primary/20 hover:border-primary/40 hover:text-foreground cursor-pointer transition-all duration-200">{tool}</span>
+                                ))}
+                              </div>
+                            </div>
+                            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4">
+                              <h3 className="text-xs font-bold uppercase tracking-widest text-foreground/50 mb-2">Collaboration</h3>
+                              <div className="flex flex-wrap gap-1.5">
+                                {["GitHub", "Firebase", "Jira"].map((tool) => (
+                                  <span key={tool} className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 border border-white/10 text-foreground/70 hover:bg-primary/20 hover:border-primary/40 hover:text-foreground cursor-pointer transition-all duration-200">{tool}</span>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ) : (
+                        <motion.div key="skills" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className="flex flex-col gap-2 flex-1 justify-between">
+                          {[
+                            { label: "Digital Illustration", level: 90, color: "bg-purple-500" },
+                            { label: "Character Concept Art", level: 85, color: "bg-pink-500" },
+                            { label: "UI/UX Design", level: 80, color: "bg-blue-500" },
+                            { label: "Logo & Brand Design", level: 82, color: "bg-emerald-500" },
+                            { label: "Game Card Illustration", level: 88, color: "bg-yellow-500" },
+                            { label: "Storyboarding", level: 78, color: "bg-orange-500" },
+                            { label: "Print & Poster Design", level: 75, color: "bg-red-400" },
+                            { label: "Wireframing", level: 72, color: "bg-cyan-500" },
+                            { label: "3D Modeling", level: 45, color: "bg-slate-400" },
+                          ].map((skill, i) => (
+                            <div key={skill.label} className="group">
+                              <div className="flex justify-between items-center mb-1">
+                                <span className="text-xs font-semibold text-foreground/70 group-hover:text-foreground transition-colors">{skill.label}</span>
+                                <span className="text-[10px] text-foreground/30">{skill.level}%</span>
+                              </div>
+                              <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
+                                <motion.div
+                                  className={`h-full rounded-full ${skill.color}`}
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: `${skill.level}%` }}
+                                  viewport={{ once: true }}
+                                  transition={{ duration: 0.8, delay: i * 0.06, ease: "easeOut" }}
+                                />
+                              </div>
+                            </div>
                           ))}
-                        </div>
-                      </div>
-                      <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4">
-                        <h3 className="text-xs font-bold uppercase tracking-widest text-foreground/50 mb-2">Collaboration</h3>
-                        <div className="flex flex-wrap gap-1.5">
-                          {["GitHub", "Firebase", "Jira"].map((tool) => (
-                            <span key={tool} className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/5 border border-white/10 text-foreground/70 hover:bg-primary/20 hover:border-primary/40 hover:text-foreground cursor-pointer transition-all duration-200">{tool}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
               </div>
