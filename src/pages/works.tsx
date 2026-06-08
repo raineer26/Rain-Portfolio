@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Grid3X3, Layers, ArrowLeft, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
+import { Grid3X3, Layers, ArrowLeft } from "lucide-react";
 import { FocusRail, type FocusRailItem } from "@/components/ui/focus-rail";
 import { BackToTop } from "@/components/ui/back-to-top";
 import { FlipReveal, FlipRevealItem } from "@/components/ui/flip-reveal";
@@ -55,17 +55,18 @@ const WORKS: WorkItem[] = [
   { id: 24, title: "Can't Use Powerup", description: "A disadvantage mystery card that blocks powerup usage for a turn.", meta: "Mystery • Disadvantage", imageSrc: "/cards/mystery_disadvantage_cant_use_powerup.webp", category: "Game Cards", subgroup: "Mystery" },
   { id: 25, title: "Lose Powerup", description: "A disadvantage mystery card that removes a held powerup.", meta: "Mystery • Disadvantage", imageSrc: "/cards/mystery_disadvantage_lose_powerup.webp", category: "Game Cards", subgroup: "Mystery" },
   { id: 26, title: "-1 Card", description: "A disadvantage mystery card that forces discarding a card.", meta: "Mystery • Disadvantage", imageSrc: "/cards/mystery_disadvantage_minus1.webp", category: "Game Cards", subgroup: "Mystery" },
+  { id: 57, title: "Art of Rain", description: "My personal brand mark — a character logo hiding the full brand name in plain sight. Look closer: the left ear forms the letter 'A', the right ear forms an 'R', and the circular head is the letter 'O' — spelling A·O·R, the initials of Art of Rain. Every curve has a purpose, and the details only reveal themselves to those who look.", meta: "Logo Design • Personal Brand", imageSrc: "/rain_logo.png", category: "Logos" },
   { id: 9, title: "Gora Na Explorer", description: "A brand identity for Gora Na Explorer, combining adventure-inspired typography with nature-themed visual elements.", meta: "Logo Design", imageSrc: "/logos/LOGO_gora_na_explorer.webp", category: "Logos" },
-  { id: 10, title: "MathPulse AI", description: "A modern tech logo for MathPulse AI, featuring geometric precision and vibrant gradients that convey intelligence and innovation.", meta: "Logo Design", imageSrc: "/logos/LOGO_mathpulse_ai.webp", category: "Logos" },
+  { id: 10, title: "MathPulse AI", description: "A logo built on layered meaning — the centerpiece is a pulse/heartbeat line that doubles as the letter 'M' for MathPulse. Look at the rising peaks: they also read as the letters 'A' and 'i', with a deliberate dot above completing the 'i' — a subtle nod to the AI in the name. One mark, three readings.", meta: "Logo Design", imageSrc: "/logos/LOGO_mathpulse_ai.webp", category: "Logos" },
   { id: 38, title: "Friize", description: "A playful and refreshing logo for the Friize beverage brand, capturing the essence of fruity frozen drinks.", meta: "Logo Design", imageSrc: "/logo_friize.png", category: "Logos" },
   { id: 39, title: "Xandata Studios", description: "A bold logo for Xandata Studios, combining sharp geometry with a modern gaming aesthetic.", meta: "Logo Design", imageSrc: "/logo_xandata_studios.png", category: "Logos" },
   { id: 11, title: "Gora Na Explorer Map", description: "A hand-illustrated exploration map for the Gora Na Explorer project, featuring detailed terrain, trails, and points of interest.", meta: "Game Map", imageSrc: "/maps/MAP_gora_na_explorer.webp", category: "Maps" },
   { id: 12, title: "Pixel Map — Gora Na Explorer", description: "A pixel art rendition of the Gora Na Explorer map, reimagined in a retro game style.", meta: "Pixel Map", imageSrc: "/map_pixel_gora_na_explorer.webp", category: "Maps" },
-  { id: 13, title: "Burger Poster", description: "A bold promotional poster for a burger brand with dynamic composition and appetizing visuals.", meta: "Poster Design", imageSrc: "/poster_burger.webp", category: "Posters" },
-  { id: 14, title: "Coffee Poster", description: "A warm-toned poster design for a coffee brand, blending cozy aesthetics with modern typography.", meta: "Poster Design", imageSrc: "/poster_coffee.webp", category: "Posters" },
+  { id: 13, title: "Burger Poster", description: "A bold promotional poster for a burger brand with dynamic composition and appetizing visuals.", meta: "Poster Design", imageSrc: "/poster_burger.webp", category: "Posters" },  { id: 14, title: "Coffee Poster", description: "A warm-toned poster design for a coffee brand, blending cozy aesthetics with modern typography.", meta: "Poster Design", imageSrc: "/poster_coffee.webp", category: "Posters" },
   { id: 15, title: "Artist Profile Poster", description: "A self-promotional poster showcasing artistic identity with creative layout and visual storytelling.", meta: "Poster Design", imageSrc: "/poster_artist_profile.webp", category: "Posters" },
   { id: 16, title: "Women's Day Poster", description: "A celebratory poster design honoring women with empowering visuals and vibrant colors.", meta: "Poster Design", imageSrc: "/poster_women.webp", category: "Posters" },
   { id: 17, title: "Gora Na Explorer Banner", description: "A promotional banner for the Gora Na Explorer project featuring adventure-themed visuals.", meta: "Banner Design", imageSrc: "/gora_na_explorer_banner.webp", category: "Posters" },
+  { id: 58, title: "Paris", description: "A travel-inspired poster design evoking the romance and iconic scenery of Paris.", meta: "Poster Design", imageSrc: "/PARIS.png", category: "Posters" },
   { id: 18, title: "Animation — Storyboard Assets", description: "Produced the storyboard and visual assets for this animated short. Storyboarding and asset creation by Art of Rain.", meta: "Animation Assets", imageSrc: "", videoSrc: "https://www.youtube.com/embed/i5E9uWphUD8?autoplay=1&mute=1&modestbranding=1&rel=0", category: "Motion & Story" },
   { id: 19, title: "Storyboard — Page 1", description: "Opening scene of an original storyboard sequence.", meta: "Storyboard", imageSrc: "/storyboard_1.webp", category: "Motion & Story" },
   { id: 20, title: "Storyboard — Page 2", description: "Character introduction and scene setup.", meta: "Storyboard", imageSrc: "/storyboard_2.webp", category: "Motion & Story" },
@@ -94,7 +95,7 @@ const WORKS: WorkItem[] = [
   { id: 56, title: "Castle", description: "A 3D castle model with detailed architecture, created in 3ds Max for a game development subject.", meta: "3D Model • 3ds Max", imageSrc: "/castle_model.webp", category: "3D Models" },
 ];
 
-const CATEGORIES_ORDER = ["All", "Game Cards", "Logos", "Maps", "Posters", "Motion & Story", "Concept Design", "3D Models"];
+const CATEGORIES_ORDER = ["All", "Logos", "Posters", "Concept Design", "3D Models", "Game Cards", "Maps", "Motion & Story"];
 
 const CATEGORY_INFO: Record<string, { description: string; image: string }> = {
   "Game Cards": { description: "Mythical creatures, rare beasts, and legendary beings — illustrated for immersive tabletop card games.", image: "/game_cards.png" },
@@ -110,7 +111,6 @@ export function WorksPage() {
   const [view, setView] = useState<"grid" | "detail">("grid");
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [filterOpen, setFilterOpen] = useState(false);
   const [showTraditional, setShowTraditional] = useState(false);
   const navigate = useNavigate();
 
@@ -193,43 +193,10 @@ export function WorksPage() {
                   transition={{ delay: 3, duration: 0.4 }}
                   className="absolute right-0 top-full mt-2 pointer-events-none z-30 group-hover:!opacity-100 group-hover:!translate-y-0 transition-all duration-200"
                 >
-                  <div className="bg-white text-black text-xs font-bold px-3 py-2 rounded-xl shadow-lg whitespace-nowrap">
+                  <div className="bg-white text-black text-xs font-bold px-3 py-2 rounded-xl shadow-lg whitespace-normal max-w-[200px] text-center sm:whitespace-nowrap sm:max-w-none sm:text-left">
                     {showTraditional ? "Back to Digital Works!" : "Wanna see my traditional artworks too? Click me!"}
                   </div>
                 </motion.div>
-              </div>
-
-              {/* Filter dropdown */}
-              <div className={`relative ${showTraditional ? "hidden" : ""}`}>
-                <button
-                  onClick={() => setFilterOpen(!filterOpen)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/15 text-sm font-semibold cursor-pointer hover:bg-white/10 hover:border-white/25 transition-all shadow-[0_2px_10px_rgba(0,0,0,0.2)]"
-                >
-                  <span>{activeCategory} ({categories.find(c => c.name === activeCategory)?.count})</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${filterOpen ? "rotate-180" : ""}`} />
-                </button>
-                <AnimatePresence>
-                  {filterOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full right-0 mt-2 rounded-xl bg-muted/90 border border-border/30 backdrop-blur-xl overflow-hidden z-30 min-w-[160px]"
-                    >
-                      {categories.map((cat) => (
-                        <button
-                          key={cat.name}
-                          onClick={() => { setActiveCategory(cat.name); setFilterOpen(false); }}
-                          className={`flex items-center justify-between w-full px-4 py-3 text-sm font-medium cursor-pointer transition-colors ${activeCategory === cat.name ? "text-foreground bg-white/5" : "text-muted-foreground hover:text-foreground hover:bg-white/5"}`}
-                        >
-                          <span>{cat.name}</span>
-                          <span className="text-xs text-muted-foreground">{cat.count}</span>
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
 
               {/* View toggle */}
@@ -309,6 +276,22 @@ export function WorksPage() {
         ) : (
         view === "grid" ? (
           <div>
+            {/* Scrollable pill filter row */}
+            <div className="flex gap-2 overflow-x-auto pb-2 mb-6 scrollbar-none" style={{ scrollbarWidth: "none" }}>
+              {categories.map((cat) => (
+                <button
+                  key={cat.name}
+                  onClick={() => setActiveCategory(cat.name)}
+                  className={`flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-semibold cursor-pointer transition-all border ${
+                    activeCategory === cat.name
+                      ? "bg-foreground text-background border-foreground"
+                      : "bg-white/5 text-muted-foreground border-white/15 hover:bg-white/10 hover:text-foreground hover:border-white/25"
+                  }`}
+                >
+                  {cat.name} <span className="opacity-50 text-xs">{cat.count}</span>
+                </button>
+              ))}
+            </div>
             {activeCategory !== "All" && (
               <div className="mb-4">
                 <img src={CATEGORY_INFO[activeCategory]?.image} alt={activeCategory} className="h-12 md:h-16 object-contain -rotate-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:rotate-0 hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
